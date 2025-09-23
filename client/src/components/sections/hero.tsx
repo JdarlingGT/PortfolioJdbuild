@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="container">
         <div className="max-w-5xl mx-auto text-center animate-fade-in">
           <h1 className="mb-8 tracking-tight">
-            Jacob Darling — <span className="text-primary">Marketing Strategist</span> & Systems Architect
+            Jacob Darling — <span className="text-primary">Brand Strategist</span> & Marketing Architect
           </h1>
           <p className="text-xl leading-relaxed max-w-4xl mx-auto mb-12">
             I design a brand's creative vision, then build the intelligent system that brings it to life. 
