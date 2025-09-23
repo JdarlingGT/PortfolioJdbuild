@@ -3,10 +3,18 @@ import { useSEO, createBreadcrumbSchema } from "@/hooks/use-seo";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useState, useMemo } from "react";
 import blackLetterLogoColor from "@assets/black-letter-logo-color.png";
 import blackLetterLogoGrayscale from "@assets/black-letter-logo-grayscale.png";
 
-const caseStudies: CaseStudy[] = [
+type FilterCategory = "All" | "Healthcare" | "B2B" | "Consumer";
+
+// Extended case study interface with filter categories
+interface ExtendedCaseStudy extends CaseStudy {
+  filterCategories: FilterCategory[];
+}
+
+const caseStudies: ExtendedCaseStudy[] = [
   {
     id: "graston-technique",
     title: "Graston Technique®",
@@ -16,6 +24,7 @@ const caseStudies: CaseStudy[] = [
     imageGradient: "bg-gradient-to-br from-primary/10 to-primary/20",
     textColor: "text-primary",
     category: "Employment" as const,
+    filterCategories: ["Healthcare", "B2B"],
     challenge: "Graston Technique needed to modernize their training platform and support systems to scale their operations efficiently while maintaining quality education standards for healthcare professionals.",
     solution: [
       "Designed and developed custom React-based training dashboard with real-time progress tracking",
@@ -40,6 +49,7 @@ const caseStudies: CaseStudy[] = [
     imageGradient: "bg-gradient-to-br from-blue-100 to-blue-200",
     textColor: "text-blue-600",
     category: "Bearcave Marketing" as const,
+    filterCategories: ["Healthcare", "B2B"],
     challenge: "Pike Medical Consultants needed to establish distinct digital presences for their PrimaryCare and UrgentCare divisions while maintaining brand consistency and driving patient acquisition across multiple service areas.",
     solution: [
       "Built responsive WordPress websites for PrimaryCare Indy and UrgentCare Indy with patient-focused UX",
@@ -64,6 +74,7 @@ const caseStudies: CaseStudy[] = [
     imageGradient: "bg-gradient-to-br from-orange-100 to-orange-200",
     textColor: "text-orange-600",
     category: "Bearcave Marketing" as const,
+    filterCategories: ["B2B"],
     challenge: "Black Letter Legal needed a distinctive brand identity that would establish credibility in the competitive legal market while standing out from traditional, conservative law firm aesthetics.",
     solution: [
       "Designed elegant monogram featuring stylized 'B' with flowing, calligraphic elements",
@@ -88,6 +99,7 @@ const caseStudies: CaseStudy[] = [
     imageGradient: "bg-gradient-to-br from-orange-100 to-orange-200",
     textColor: "text-orange-600",
     category: "Bearcave Marketing" as const,
+    filterCategories: ["Consumer"],
     challenge: "A new barbecue restaurant needed to build brand recognition and compete against established local competitors while creating an efficient ordering system for modern customers.",
     solution: [
       "Created distinctive brand identity that captured authentic barbecue culture and local flavor",
@@ -106,6 +118,20 @@ const caseStudies: CaseStudy[] = [
 ];
 
 export default function CaseStudies() {
+  const [activeFilter, setActiveFilter] = useState<FilterCategory>("All");
+
+  // Filter case studies based on active filter
+  const filteredCaseStudies = useMemo(() => {
+    if (activeFilter === "All") {
+      return caseStudies;
+    }
+    return caseStudies.filter(study => 
+      study.filterCategories.includes(activeFilter)
+    );
+  }, [activeFilter]);
+
+  const filterCategories: FilterCategory[] = ["All", "Healthcare", "B2B", "Consumer"];
+
   useSEO({
     title: "Selected Works - Jacob Darling | Marketing Case Studies",
     description: "Explore detailed case studies showcasing marketing automation, CRM development, and growth strategies for healthcare, legal, and restaurant clients with measurable results.",
@@ -129,75 +155,107 @@ export default function CaseStudies() {
       <section className="section-spacing bg-background">
         <div className="container text-center">
           <h1 className="mb-6">Selected Works</h1>
-          <p className="text-lg max-w-3xl mx-auto">
+          <p className="text-lg max-w-3xl mx-auto mb-12">
             Deep dives into transformative projects that showcase the power of strategic marketing 
             combined with technical excellence
           </p>
+
+          {/* Filter Bar */}
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            {filterCategories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveFilter(category)}
+                className={`
+                  px-6 py-3 rounded-full font-medium transition-all duration-300 ease-out
+                  ${activeFilter === category
+                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25 scale-105'
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground hover:scale-105'
+                  }
+                `}
+                data-testid={`filter-${category.toLowerCase()}`}
+              >
+                {category}
+                <span className="ml-2 text-xs opacity-70">
+                  ({category === "All" ? caseStudies.length : caseStudies.filter(s => s.filterCategories.includes(category)).length})
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Case Studies */}
-      {caseStudies.map((caseStudy, index) => {
-        const isEven = index % 2 === 0;
-        return (
-          <section 
-            key={caseStudy.id} 
-            className="section-spacing border-t border-border"
-            data-testid={`case-study-${caseStudy.id}`}
-          >
-            <div className="container">
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${!isEven ? 'lg:grid-flow-col-dense' : ''}`}>
+      <div className="transition-all duration-500 ease-out">
+        {filteredCaseStudies.map((caseStudy, index) => {
+          const isEven = index % 2 === 0;
+          return (
+            <section 
+              key={caseStudy.id} 
+              className={`
+                section-spacing border-t border-border
+                animate-fade-in opacity-0
+                transform transition-all duration-700 ease-out
+              `}
+              style={{ 
+                animationDelay: `${index * 0.2}s`,
+                animationFillMode: 'forwards'
+              }}
+              data-testid={`case-study-${caseStudy.id}`}
+            >
+              <div className="container">
+                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${!isEven ? 'lg:grid-flow-col-dense' : ''}`}>
                 
-                {/* Image Section */}
-                <div className={`${!isEven ? 'lg:col-start-2' : ''}`}>
-                  {caseStudy.id === 'black-letter-legal' ? (
-                    <div className="aspect-video rounded-lg bg-gradient-to-br from-slate-900 to-slate-800 p-8 shadow-lg">
-                      <div className="h-full flex items-center justify-center gap-8">
-                        <div className="flex-1 flex items-center justify-center">
-                          <img 
-                            src={blackLetterLogoGrayscale} 
-                            alt="Black Letter Legal - Grayscale Logo" 
-                            className="max-h-24 w-auto object-contain"
-                          />
-                        </div>
-                        <div className="w-px h-16 bg-gray-600"></div>
-                        <div className="flex-1 flex items-center justify-center">
-                          <img 
-                            src={blackLetterLogoColor} 
-                            alt="Black Letter Legal - Color Logo" 
-                            className="max-h-24 w-auto object-contain"
-                          />
+                  {/* Image Section */}
+                  <div className={`${!isEven ? 'lg:col-start-2' : ''}`}>
+                    {caseStudy.id === 'black-letter-legal' ? (
+                      <div className="aspect-video rounded-lg bg-gradient-to-br from-slate-900 to-slate-800 p-8 shadow-lg">
+                        <div className="h-full flex items-center justify-center gap-8">
+                          <div className="flex-1 flex items-center justify-center">
+                            <img 
+                              src={blackLetterLogoGrayscale} 
+                              alt="Black Letter Legal - Grayscale Logo" 
+                              className="max-h-24 w-auto object-contain"
+                            />
+                          </div>
+                          <div className="w-px h-16 bg-gray-600"></div>
+                          <div className="flex-1 flex items-center justify-center">
+                            <img 
+                              src={blackLetterLogoColor} 
+                              alt="Black Letter Legal - Color Logo" 
+                              className="max-h-24 w-auto object-contain"
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div 
-                      className={`aspect-video rounded-lg ${caseStudy.imageGradient} flex items-center justify-center shadow-lg`}
-                    >
-                      <div className={`${caseStudy.textColor} font-bold text-2xl text-center px-8`}>
-                        {caseStudy.title}
+                    ) : (
+                      <div 
+                        className={`aspect-video rounded-lg ${caseStudy.imageGradient} flex items-center justify-center shadow-lg`}
+                      >
+                        <div className={`${caseStudy.textColor} font-bold text-2xl text-center px-8`}>
+                          {caseStudy.title}
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </div>
 
-                {/* Content Section */}
-                <div className={`${!isEven ? 'lg:col-start-1' : ''}`}>
-                  <div className="space-y-8">
-                    {/* Project Header */}
-                    <div>
-                      <h2 className="mb-4">{caseStudy.title}</h2>
-                      <p className="text-lg text-primary font-semibold mb-4">
-                        {caseStudy.subtitle}
-                      </p>
-                      <p className="text-lg leading-relaxed">
-                        {caseStudy.description}
-                      </p>
-                    </div>
+                  {/* Content Section */}
+                  <div className={`${!isEven ? 'lg:col-start-1' : ''}`}>
+                    <div className="space-y-8">
+                      {/* Project Header */}
+                      <div>
+                        <h2 className="mb-4">{caseStudy.title}</h2>
+                        <p className="text-lg text-primary font-semibold mb-4">
+                          {caseStudy.subtitle}
+                        </p>
+                        <p className="text-lg leading-relaxed">
+                          {caseStudy.description}
+                        </p>
+                      </div>
 
-                    {/* Technologies */}
-                    <div>
-                      <div className="flex flex-wrap gap-3">
+                      {/* Technologies */}
+                      <div>
+                        <div className="flex flex-wrap gap-3">
                         {caseStudy.technologies.map((tech, techIndex) => (
                           <span
                             key={techIndex}
@@ -273,8 +331,9 @@ export default function CaseStudies() {
               </div>
             </div>
           </section>
-        );
-      })}
+          );
+        })}
+      </div>
 
       {/* Call to Action */}
       <section className="section-spacing bg-card border-t border-border">
