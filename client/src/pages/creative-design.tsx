@@ -1,55 +1,11 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useSEO } from "@/hooks/use-seo";
 import { Filter, Grid, List, Eye, ExternalLink, Palette, Image, Layout, Type, Zap } from "lucide-react";
+import type { DesignProject } from "@shared/schema";
 
-interface DesignProject {
-  id: string;
-  title: string;
-  category: "Logo Design" | "Branding" | "Print Design" | "Digital Graphics" | "Web Design" | "Marketing Materials";
-  description: string;
-  tools: string[];
-  year: string;
-  imageUrl: string;
-  size: "small" | "medium" | "large";
-  featured: boolean;
-}
-
-// Placeholder data structure - will be replaced with actual project data
-const designProjects: DesignProject[] = [
-  {
-    id: "placeholder-1",
-    title: "Professional Logo Design",
-    category: "Logo Design",
-    description: "Custom logo design for professional services company",
-    tools: ["Adobe Illustrator", "Photoshop"],
-    year: "2022",
-    imageUrl: "", // Will be populated with actual images
-    size: "medium",
-    featured: true
-  },
-  {
-    id: "placeholder-2", 
-    title: "Brand Identity System",
-    category: "Branding",
-    description: "Complete brand identity including logo, colors, and typography",
-    tools: ["Adobe Creative Suite", "Figma"],
-    year: "2021",
-    imageUrl: "",
-    size: "large",
-    featured: true
-  },
-  {
-    id: "placeholder-3",
-    title: "Marketing Collateral",
-    category: "Print Design", 
-    description: "Business cards, letterhead, and promotional materials",
-    tools: ["InDesign", "Illustrator"],
-    year: "2020",
-    imageUrl: "",
-    size: "small",
-    featured: false
-  }
-];
+// Define categories based on the actual data
+type DesignCategory = "Logo Design" | "Branding" | "Print Design" | "Digital Graphics" | "Web Design" | "Marketing Materials";
 
 const categories = ["All", "Logo Design", "Branding", "Print Design", "Digital Graphics", "Web Design", "Marketing Materials"];
 
@@ -76,11 +32,29 @@ export default function CreativeDesign() {
     canonical: "https://jacobdarling.com/creative-design"
   });
 
-  const filteredProjects = selectedCategory === "All" 
-    ? designProjects 
-    : designProjects.filter(project => project.category === selectedCategory);
+  // Fetch all design projects
+  const { data: allProjects = [], isLoading: isLoadingAll } = useQuery<DesignProject[]>({
+    queryKey: ['/api/design-projects', selectedCategory],
+    queryFn: async () => {
+      const url = selectedCategory === "All" 
+        ? '/api/design-projects'
+        : `/api/design-projects?category=${encodeURIComponent(selectedCategory)}`;
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Failed to fetch design projects');
+      }
+      return response.json();
+    },
+    enabled: true,
+  });
 
-  const featuredProjects = designProjects.filter(project => project.featured);
+  // Fetch featured projects
+  const { data: featuredProjects = [], isLoading: isLoadingFeatured } = useQuery<DesignProject[]>({
+    queryKey: ['/api/design-projects/featured'],
+    enabled: true,
+  });
+
+  const filteredProjects = allProjects;
 
   return (
     <div className="pt-24">
@@ -136,13 +110,14 @@ export default function CreativeDesign() {
                   className="group bg-background border border-border rounded-xl overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300"
                   data-testid={`featured-project-${index}`}
                 >
-                  {/* Image Placeholder */}
-                  <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center group-hover:from-primary/20 group-hover:to-secondary/20 transition-colors duration-300">
-                    <div className="text-center text-muted-foreground">
-                      <IconComponent className="w-12 h-12 mx-auto mb-3 opacity-50" />
-                      <p className="text-sm">Design Preview</p>
-                      <p className="text-xs">{project.title}</p>
-                    </div>
+                  {/* Project Image */}
+                  <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 overflow-hidden group-hover:from-primary/20 group-hover:to-secondary/20 transition-colors duration-300">
+                    <img 
+                      src={project.imageUrl} 
+                      alt={project.title}
+                      className="w-full h-full object-contain bg-white group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
                   </div>
 
                   {/* Project Info */}
@@ -164,14 +139,14 @@ export default function CreativeDesign() {
 
                     {/* Tools */}
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tools.map((tool, toolIndex) => (
+                      {project.tools?.map((tool, toolIndex) => (
                         <span
                           key={toolIndex}
                           className="text-xs bg-accent text-accent-foreground px-2 py-1 rounded-md"
                         >
                           {tool}
                         </span>
-                      ))}
+                      )) || <span className="text-xs text-muted-foreground">No tools specified</span>}
                     </div>
 
                     {/* Action Button */}
@@ -257,9 +232,14 @@ export default function CreativeDesign() {
                       className="flex gap-6 bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-primary transition-all duration-300 group"
                       data-testid={`project-list-${index}`}
                     >
-                      {/* Image Placeholder */}
-                      <div className="w-32 h-24 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <IconComponent className="w-8 h-8 text-primary opacity-50" />
+                      {/* Project Image */}
+                      <div className="w-32 h-24 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg overflow-hidden flex-shrink-0">
+                        <img 
+                          src={project.imageUrl} 
+                          alt={project.title}
+                          className="w-full h-full object-contain bg-white"
+                          loading="lazy"
+                        />
                       </div>
 
                       {/* Content */}
@@ -287,7 +267,7 @@ export default function CreativeDesign() {
                         </p>
 
                         <div className="flex flex-wrap gap-2">
-                          {project.tools.map((tool, toolIndex) => (
+                          {project.tools?.map((tool, toolIndex) => (
                             <span
                               key={toolIndex}
                               className="text-xs bg-accent text-accent-foreground px-2 py-1 rounded-md"
@@ -307,16 +287,18 @@ export default function CreativeDesign() {
                     className="group bg-card border border-border rounded-xl overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300"
                     data-testid={`project-grid-${index}`}
                   >
-                    {/* Image Placeholder */}
+                    {/* Project Image */}
                     <div className={`
-                      ${project.size === "large" ? "aspect-[4/3]" : project.size === "small" ? "aspect-square" : "aspect-video"}
-                      bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center 
+                      aspect-video
+                      bg-gradient-to-br from-primary/10 to-secondary/10 overflow-hidden
                       group-hover:from-primary/20 group-hover:to-secondary/20 transition-colors duration-300
                     `}>
-                      <div className="text-center text-muted-foreground">
-                        <IconComponent className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                        <p className="text-xs">Design Preview</p>
-                      </div>
+                      <img 
+                        src={project.imageUrl} 
+                        alt={project.title}
+                        className="w-full h-full object-contain bg-white group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
                     </div>
 
                     {/* Project Info */}
@@ -333,7 +315,7 @@ export default function CreativeDesign() {
                       </h3>
                       
                       <div className="flex flex-wrap gap-1 mb-3">
-                        {project.tools.slice(0, 2).map((tool, toolIndex) => (
+                        {project.tools?.slice(0, 2).map((tool, toolIndex) => (
                           <span
                             key={toolIndex}
                             className="text-xs bg-accent text-accent-foreground px-2 py-1 rounded-md"
@@ -341,9 +323,9 @@ export default function CreativeDesign() {
                             {tool}
                           </span>
                         ))}
-                        {project.tools.length > 2 && (
+                        {(project.tools?.length || 0) > 2 && (
                           <span className="text-xs text-muted-foreground px-2 py-1">
-                            +{project.tools.length - 2} more
+                            +{(project.tools?.length || 0) - 2} more
                           </span>
                         )}
                       </div>
