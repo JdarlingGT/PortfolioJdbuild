@@ -29,6 +29,30 @@ const caseStudies: CaseStudy[] = [
     ]
   },
   {
+    id: "pike-medical-consultants",
+    title: "Pike Medical Consultants",
+    subtitle: "Integrated Digital Strategy & Campaign Management",
+    description: "Developed comprehensive digital presence for medical practice group, including PrimaryCare Indy and UrgentCare Indy websites, Google Ads campaigns, seasonal email marketing, and complete branding package.",
+    technologies: ["WordPress", "Google Ads", "Email Marketing", "SEO", "Branding"],
+    imageGradient: "bg-gradient-to-br from-blue-100 to-blue-200",
+    textColor: "text-blue-600",
+    category: "Bearcave Marketing" as const,
+    challenge: "Pike Medical Consultants needed to establish distinct digital presences for their PrimaryCare and UrgentCare divisions while maintaining brand consistency and driving patient acquisition across multiple service areas.",
+    solution: [
+      "Built responsive WordPress websites for PrimaryCare Indy and UrgentCare Indy with patient-focused UX",
+      "Developed and managed Google Ads campaigns targeting local healthcare searches",
+      "Created seasonal email marketing campaigns for patient retention and health awareness",
+      "Designed comprehensive brand identity including logos, banners, and marketing materials"
+    ],
+    impact: "Established strong digital foundation for medical practice growth with cohesive branding and effective patient acquisition channels.",
+    results: [
+      "Dual-branded websites serving distinct patient populations",
+      "Successful Google Ads campaigns driving qualified patient leads",
+      "Engaging seasonal email campaigns improving patient retention",
+      "Complete brand package supporting offline and online marketing efforts"
+    ]
+  },
+  {
     id: "black-letter-legal",
     title: "Black Letter Legal",
     subtitle: "Premium Logo Design & Brand Identity",
