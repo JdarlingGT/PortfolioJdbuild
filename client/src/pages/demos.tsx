@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { useSEO, createBreadcrumbSchema } from "@/hooks/use-seo";
 
 // Simulated automation workflow data
 const workflowSteps = [
@@ -37,6 +38,23 @@ const dashboardMetrics = [
 ];
 
 export default function Demos() {
+  useSEO({
+    title: "Interactive Demos - Jacob Darling | Marketing Automation Showcase",
+    description: "Experience interactive demos of marketing automation workflows, analytics dashboards, and CRM interfaces. See real functionality from Jacob Darling's client projects.",
+    keywords: "marketing automation demo, interactive dashboard, CRM interface, automation workflow, marketing tools",
+    canonical: "https://jacobdarling.com/demos",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Interactive Marketing Demos",
+      "description": "Live demonstrations of marketing automation and dashboard interfaces",
+      "breadcrumb": createBreadcrumbSchema([
+        { name: "Home", url: "https://jacobdarling.com" },
+        { name: "Demos", url: "https://jacobdarling.com/demos" }
+      ])
+    }
+  });
+
   const [isRunning, setIsRunning] = useState(false);
   const [currentStep, setCurrentStep] = useState(-1);
   const [selectedDemo, setSelectedDemo] = useState<string>("automation");

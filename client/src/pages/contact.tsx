@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { useSEO, createBreadcrumbSchema } from "@/hooks/use-seo";
 
 interface FormData {
   name: string;
@@ -13,6 +14,23 @@ interface FormData {
 }
 
 export default function Contact() {
+  useSEO({
+    title: "Contact - Jacob Darling | Get In Touch",
+    description: "Ready to discuss your marketing automation and systems architecture needs? Get in touch with Jacob Darling to explore how strategic marketing combined with technical expertise can transform your business.",
+    keywords: "contact jacob darling, marketing strategist contact, systems architect, marketing automation consultation",
+    canonical: "https://jacobdarling.com/contact",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact Jacob Darling",
+      "description": "Get in touch for marketing automation and systems architecture services",
+      "breadcrumb": createBreadcrumbSchema([
+        { name: "Home", url: "https://jacobdarling.com" },
+        { name: "Contact", url: "https://jacobdarling.com/contact" }
+      ])
+    }
+  });
+
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",

@@ -14,6 +14,7 @@ import {
   Server
 } from "lucide-react";
 import { type Skill, type TechnicalArea, type TechnologyStack } from "@/lib/types";
+import { useSEO, createBreadcrumbSchema } from "@/hooks/use-seo";
 
 const coreSkills: Skill[] = [
   { name: "Strategy", icon: "target" },
@@ -105,6 +106,13 @@ const getIcon = (iconName: string) => {
 };
 
 export default function Skills() {
+  useSEO({
+    title: "Skills & Expertise - Jacob Darling | Technical Marketing Capabilities",
+    description: "Comprehensive overview of marketing and technical skills including web performance, security, analytics, automation, and full-stack development capabilities.",
+    keywords: "marketing skills, technical expertise, web performance, security, analytics, automation, CRM development, dashboard development",
+    canonical: "https://jacobdarling.com/skills"
+  });
+
   return (
     <section className="py-16 bg-background pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

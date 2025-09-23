@@ -1,6 +1,24 @@
 import { Layers, BusFront, TrendingUp } from "lucide-react";
+import { useSEO, createPersonSchema, createBreadcrumbSchema } from "@/hooks/use-seo";
 
 export default function About() {
+  useSEO({
+    title: "About - Jacob Darling | Marketing Strategist & Systems Architect",
+    description: "Learn about Jacob Darling's unique background combining marketing strategy with technical systems architecture. 8+ years of experience building automation systems and growth strategies.",
+    keywords: "marketing strategist, systems architect, about jacob darling, marketing automation expert, technical marketing",
+    canonical: "https://jacobdarling.com/about",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@graph": [
+        createPersonSchema(),
+        createBreadcrumbSchema([
+          { name: "Home", url: "https://jacobdarling.com" },
+          { name: "About", url: "https://jacobdarling.com/about" }
+        ])
+      ]
+    }
+  });
+
   return (
     <section className="py-16 bg-background pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

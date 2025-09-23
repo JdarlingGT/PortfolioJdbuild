@@ -2,6 +2,7 @@ import { useState } from "react";
 import CaseStudyCard from "@/components/sections/case-study-card";
 import { type CaseStudy } from "@/lib/types";
 import { Button } from "@/components/ui/button";
+import { useSEO, createBreadcrumbSchema } from "@/hooks/use-seo";
 
 const caseStudies: CaseStudy[] = [
   {
@@ -67,6 +68,23 @@ const caseStudies: CaseStudy[] = [
 ];
 
 export default function CaseStudies() {
+  useSEO({
+    title: "Case Studies - Jacob Darling | Marketing Projects & Results",
+    description: "Explore detailed case studies showcasing marketing automation, CRM development, and growth strategies for healthcare, legal, and restaurant clients with measurable results.",
+    keywords: "marketing case studies, automation projects, CRM development, healthcare marketing, legal marketing, restaurant marketing",
+    canonical: "https://jacobdarling.com/case-studies",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Marketing Case Studies",
+      "description": "Portfolio of marketing automation and systems architecture projects",
+      "breadcrumb": createBreadcrumbSchema([
+        { name: "Home", url: "https://jacobdarling.com" },
+        { name: "Case Studies", url: "https://jacobdarling.com/case-studies" }
+      ])
+    }
+  });
+
   const [selectedCategory, setSelectedCategory] = useState<"All" | "Employment" | "Bearcave Marketing">("All");
   
   const filteredCaseStudies = selectedCategory === "All" 
