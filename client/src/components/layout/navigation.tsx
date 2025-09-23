@@ -127,14 +127,14 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="nav-sticky">
+      <div className="container">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center space-x-2" data-testid="logo-link">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">JD</span>
+          <Link href="/" className="flex items-center space-x-3" data-testid="logo-link">
+            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shadow-md transition-all hover:shadow-lg hover:scale-105">
+              <span className="text-primary-foreground font-bold text-base tracking-tight">JD</span>
             </div>
-            <span className="font-semibold text-foreground">Jacob Darling</span>
+            <span className="font-bold text-foreground text-lg tracking-tight">Jacob Darling</span>
           </Link>
           
           <div className="hidden md:flex items-center space-x-8">
@@ -147,10 +147,10 @@ export default function Navigation() {
               >
                 <Link
                   href={item.href}
-                  className={`transition-colors py-2 ${
+                  className={`transition-all py-2 px-1 font-medium text-sm tracking-wide ${
                     location === item.href
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "text-primary border-b-2 border-primary"
+                      : "text-muted-foreground hover:text-primary hover:border-b-2 hover:border-secondary"
                   }`}
                   data-testid={`nav-${item.name.toLowerCase().replace(' ', '-')}`}
                 >
@@ -162,12 +162,13 @@ export default function Navigation() {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
+              className="p-2 rounded-md hover:bg-accent transition-colors"
               data-testid="theme-toggle"
             >
               {theme === "dark" ? (
-                <Sun className="h-5 w-5" />
+                <Sun className="h-5 w-5 text-muted-foreground hover:text-secondary" />
               ) : (
-                <Moon className="h-5 w-5" />
+                <Moon className="h-5 w-5 text-muted-foreground hover:text-primary" />
               )}
             </Button>
           </div>
@@ -177,21 +178,23 @@ export default function Navigation() {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
+              className="p-2 rounded-md hover:bg-accent transition-colors"
               data-testid="theme-toggle-mobile"
             >
               {theme === "dark" ? (
-                <Sun className="h-5 w-5" />
+                <Sun className="h-5 w-5 text-muted-foreground" />
               ) : (
-                <Moon className="h-5 w-5" />
+                <Moon className="h-5 w-5 text-muted-foreground" />
               )}
             </Button>
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-md hover:bg-accent transition-colors"
               data-testid="mobile-menu-toggle"
             >
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isOpen ? <X className="h-5 w-5 text-muted-foreground" /> : <Menu className="h-5 w-5 text-muted-foreground" />}
             </Button>
           </div>
         </div>
@@ -270,23 +273,25 @@ export default function Navigation() {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-card border-b border-border">
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`block px-3 py-2 text-base font-medium transition-colors ${
-                  location === item.href
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                }`}
-                onClick={() => setIsOpen(false)}
-                data-testid={`mobile-nav-${item.name.toLowerCase().replace(' ', '-')}`}
-              >
-                {item.name}
-              </Link>
-            ))}
+        <div className="md:hidden bg-card/95 backdrop-blur-sm border-b border-border">
+          <div className="container py-4">
+            <div className="space-y-2">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`block px-4 py-3 text-base font-medium rounded-md transition-colors ${
+                    location === item.href
+                      ? "text-primary bg-primary/10 border-l-4 border-primary"
+                      : "text-muted-foreground hover:text-primary hover:bg-accent"
+                  }`}
+                  onClick={() => setIsOpen(false)}
+                  data-testid={`mobile-nav-${item.name.toLowerCase().replace(' ', '-')}`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       )}
