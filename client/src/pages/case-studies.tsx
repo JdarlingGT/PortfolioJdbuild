@@ -1,5 +1,7 @@
 import { type CaseStudy } from "@/lib/types";
 import { useSEO, createBreadcrumbSchema } from "@/hooks/use-seo";
+import blackLetterLogoColor from "@assets/black-letter-logo-color.png";
+import blackLetterLogoGrayscale from "@assets/black-letter-logo-grayscale.png";
 
 const caseStudies: CaseStudy[] = [
   {
@@ -29,25 +31,25 @@ const caseStudies: CaseStudy[] = [
   {
     id: "black-letter-legal",
     title: "Black Letter Legal",
-    subtitle: "High-Conversion B2B Lead Generation",
-    description: "Developed multi-channel digital strategy for specialized legal research firm, achieving 250% increase in qualified leads and 80% improvement in case conversion rate.",
-    technologies: ["SEO", "Content Strategy", "LinkedIn", "CRM"],
-    imageGradient: "bg-gradient-to-br from-secondary/20 to-secondary/30",
-    textColor: "text-muted-foreground",
-    category: "Employment" as const,
-    challenge: "Black Letter Legal needed to establish thought leadership and generate qualified leads in the competitive legal research market while building trust with potential enterprise clients.",
+    subtitle: "Premium Logo Design & Brand Identity",
+    description: "Crafted sophisticated brand identity for legal research firm, featuring custom typography and distinctive logo design that balances professional authority with modern elegance.",
+    technologies: ["Logo Design", "Typography", "Brand Identity", "Color Theory"],
+    imageGradient: "bg-gradient-to-br from-orange-100 to-orange-200",
+    textColor: "text-orange-600",
+    category: "Bearcave Marketing" as const,
+    challenge: "Black Letter Legal needed a distinctive brand identity that would establish credibility in the competitive legal market while standing out from traditional, conservative law firm aesthetics.",
     solution: [
-      "Developed comprehensive content strategy targeting specific legal research pain points",
-      "Implemented advanced SEO targeting high-value legal industry keywords",
-      "Created LinkedIn outreach campaigns with personalized messaging for decision-makers",
-      "Built sophisticated CRM system to track and nurture long sales cycles"
+      "Designed elegant monogram featuring stylized 'B' with flowing, calligraphic elements",
+      "Developed sophisticated color palette with professional grayscale and vibrant orange accent",
+      "Created custom typography treatment balancing traditional serif elegance with modern readability",
+      "Engineered scalable logo system working across digital and print applications"
     ],
-    impact: "Positioned the firm as the go-to legal research authority while dramatically improving lead quality and conversion rates.",
+    impact: "Delivered a premium brand identity that positions Black Letter Legal as both authoritative and approachable, setting them apart in the legal research marketplace.",
     results: [
-      "250% increase in qualified B2B leads",
-      "80% improvement in case conversion rate",
-      "Established market leadership in specialized legal research",
-      "Created scalable lead generation system for sustained growth"
+      "Distinctive monogram design establishing immediate brand recognition",
+      "Versatile color system supporting both conservative and dynamic brand applications",
+      "Professional typography enhancing credibility and trust",
+      "Scalable brand system ready for digital and print implementation"
     ]
   },
   {
@@ -121,13 +123,35 @@ export default function CaseStudies() {
                 
                 {/* Image Section */}
                 <div className={`${!isEven ? 'lg:col-start-2' : ''}`}>
-                  <div 
-                    className={`aspect-video rounded-lg ${caseStudy.imageGradient} flex items-center justify-center shadow-lg`}
-                  >
-                    <div className={`${caseStudy.textColor} font-bold text-2xl text-center px-8`}>
-                      {caseStudy.title}
+                  {caseStudy.id === 'black-letter-legal' ? (
+                    <div className="aspect-video rounded-lg bg-gradient-to-br from-slate-900 to-slate-800 p-8 shadow-lg">
+                      <div className="h-full flex items-center justify-center gap-8">
+                        <div className="flex-1 flex items-center justify-center">
+                          <img 
+                            src={blackLetterLogoGrayscale} 
+                            alt="Black Letter Legal - Grayscale Logo" 
+                            className="max-h-24 w-auto object-contain"
+                          />
+                        </div>
+                        <div className="w-px h-16 bg-gray-600"></div>
+                        <div className="flex-1 flex items-center justify-center">
+                          <img 
+                            src={blackLetterLogoColor} 
+                            alt="Black Letter Legal - Color Logo" 
+                            className="max-h-24 w-auto object-contain"
+                          />
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div 
+                      className={`aspect-video rounded-lg ${caseStudy.imageGradient} flex items-center justify-center shadow-lg`}
+                    >
+                      <div className={`${caseStudy.textColor} font-bold text-2xl text-center px-8`}>
+                        {caseStudy.title}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Content Section */}
