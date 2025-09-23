@@ -1,7 +1,58 @@
-import { Layers, BusFront, TrendingUp } from "lucide-react";
+import { Layers, BusFront, TrendingUp, ChevronDown } from "lucide-react";
+import { useState } from "react";
 import { useSEO, createPersonSchema, createBreadcrumbSchema } from "@/hooks/use-seo";
 
+interface TimelineNode {
+  id: string;
+  title: string;
+  subtitle: string;
+  content: string;
+  year?: string;
+}
+
+const timelineNodes: TimelineNode[] = [
+  {
+    id: "launchpad",
+    title: "The Launchpad",
+    subtitle: "My First Marketing Position",
+    content: "Learned to stretch budgets, design visuals, and prove ROI when few believed marketing was measurable.",
+    year: "Early Career"
+  },
+  {
+    id: "pike-medical", 
+    title: "Pike Medical Consultants",
+    subtitle: "Healthcare Meets Hustle",
+    content: "Built PrimaryCare Indy & UrgentCare Indy sites. Ran Google Ads driving thousands of patient visits. Designed logos, outdoor banners, and seasonal email campaigns. Blended brand, web, and patient acquisition into one machine.",
+    year: "Agency Experience"
+  },
+  {
+    id: "graston-technique",
+    title: "Graston Technique®", 
+    subtitle: "National Transformation",
+    content: "Architected a full-stack marketing system: 400+ CRM automations, AI-powered support reducing tickets by 70%, \"Buy Now, Choose Later\" checkout lifting conversions 40%. Mastered strategy + systems at scale.",
+    year: "Enterprise Role"
+  },
+  {
+    id: "current-portfolio",
+    title: "Current Portfolio",
+    subtitle: "Marketing Strategist & Systems Architect", 
+    content: "Specializing in bridging brand storytelling with technical execution. From AI and automation to SEO and design, I turn abstract goals into revenue-focused ecosystems.",
+    year: "Present"
+  }
+];
+
 export default function About() {
+  const [expandedNode, setExpandedNode] = useState<string | null>(null);
+
+  const toggleNode = (nodeId: string) => {
+    // Always set to the clicked node (accordion behavior)
+    if (expandedNode === nodeId) {
+      setExpandedNode(null);
+    } else {
+      setExpandedNode(nodeId);
+    }
+  };
+
   useSEO({
     title: "About - Jacob Darling | Marketing Strategist & Systems Architect",
     description: "Learn about Jacob Darling's unique background combining marketing strategy with technical systems architecture. 8+ years of experience building automation systems and growth strategies.",
@@ -101,6 +152,86 @@ export default function About() {
                   Focus on KPIs that drive growth while automating repetitive tasks.
                 </p>
               </div>
+            </div>
+          </div>
+
+          {/* Interactive Career Timeline */}
+          <div className="bg-card border border-border rounded-lg p-8 mt-8">
+            <h2 className="text-2xl font-bold text-foreground mb-8 text-center">Career Journey</h2>
+            
+            <div className="relative max-w-3xl mx-auto">
+              {/* Vertical Line */}
+              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-border"></div>
+              
+              {timelineNodes.map((node, index) => (
+                <div 
+                  key={node.id} 
+                  className="relative mb-8 last:mb-0"
+                  data-testid={`timeline-node-${node.id}`}
+                >
+                  {/* Timeline Dot */}
+                  <div className="absolute left-6 w-4 h-4 bg-primary border-4 border-background rounded-full shadow-lg z-10"></div>
+                  
+                  {/* Year Label */}
+                  <div className="absolute left-12 -top-1 text-xs font-medium text-muted-foreground bg-background px-2 py-1 rounded border border-border">
+                    {node.year}
+                  </div>
+                  
+                  {/* Content Card */}
+                  <div className="ml-20">
+                    <button
+                      onClick={() => toggleNode(node.id)}
+                      className={`
+                        w-full text-left p-6 rounded-lg border transition-all duration-300 ease-out
+                        hover:shadow-lg hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary/50
+                        ${expandedNode === node.id 
+                          ? 'bg-primary/5 border-primary/20 shadow-lg' 
+                          : 'bg-background border-border hover:border-primary/30'
+                        }
+                      `}
+                      data-testid={`timeline-button-${node.id}`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h3 className="text-lg font-semibold text-foreground mb-1">
+                            {node.title}
+                          </h3>
+                          <p className="text-sm text-primary font-medium">
+                            {node.subtitle}
+                          </p>
+                        </div>
+                        <ChevronDown 
+                          className={`
+                            w-5 h-5 text-muted-foreground transition-transform duration-300
+                            ${expandedNode === node.id ? 'rotate-180' : ''}
+                          `}
+                        />
+                      </div>
+                      
+                      {/* Expandable Content */}
+                      <div 
+                        className={`
+                          overflow-hidden transition-all duration-500 ease-out
+                          ${expandedNode === node.id 
+                            ? 'max-h-40 opacity-100 mt-4' 
+                            : 'max-h-0 opacity-0'
+                          }
+                        `}
+                        data-testid={`timeline-content-${node.id}`}
+                        style={{
+                          display: expandedNode === node.id ? 'block' : 'none'
+                        }}
+                      >
+                        <div className="pt-3 border-t border-border/50">
+                          <p className="text-foreground leading-relaxed">
+                            {node.content}
+                          </p>
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
