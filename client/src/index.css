@@ -3,22 +3,22 @@
 @tailwind utilities;
 
 :root {
-  /* Design System Colors - Professional Palette */
-  --primary: hsl(210, 50%, 15%); /* Deep professional blue #0A192F */
+  /* Design System Colors - Marketing Strategist & Systems Architect */
+  --primary: hsl(340, 84%, 51%); /* Brand Primary #eb1a4e */
   --primary-foreground: hsl(0 0% 100%);
-  --secondary: hsl(174, 100%, 70%); /* Bright energetic teal #64FFDA */
-  --secondary-foreground: hsl(210, 50%, 15%);
-  --background: hsl(210, 14%, 97%); /* Very light grey #F8F9FA */
-  --foreground: hsl(215, 25%, 17%); /* Dark navy #1D2A3A */
-  --muted: hsl(210, 25%, 88%); /* Light subtle grey */
-  --muted-foreground: hsl(215, 20%, 54%); /* Softer dark grey #8892B0 */
-  --accent: hsl(210, 20%, 88%);
+  --secondary: hsl(0, 0%, 77%); /* Professional Grey #c4c4c4 */
+  --secondary-foreground: hsl(215, 25%, 17%);
+  --background: hsl(0, 0%, 94%); /* Light Background #f0f0f0 */
+  --foreground: hsl(215, 25%, 17%); /* Dark text */
+  --muted: hsl(0, 0%, 89%); /* Light subtle grey */
+  --muted-foreground: hsl(215, 20%, 54%); /* Softer dark grey */
+  --accent: hsl(0, 0%, 89%);
   --accent-foreground: hsl(215, 25%, 17%);
   --card: hsl(0 0% 100%);
   --card-foreground: hsl(215, 25%, 17%);
-  --border: hsl(220, 25%, 88%); /* Light grey #E2E8F0 */
-  --input: hsl(220, 25%, 88%);
-  --ring: hsl(174, 100%, 70%);
+  --border: hsl(0, 0%, 85%); /* Light border */
+  --input: hsl(0, 0%, 85%);
+  --ring: hsl(340, 84%, 51%);
   --popover: hsl(0 0% 100%);
   --popover-foreground: hsl(215, 25%, 17%);
   --destructive: hsl(0, 84%, 60%);
@@ -42,14 +42,14 @@
   --container-max-width: 1100px;
   --radius: 0.25rem; /* Clean, subtle radius */
   
-  /* Typography Scale - Responsive */
+  /* Typography Scale - Marketing Professional */
   --text-xs: 0.875rem; /* 14px */
-  --text-sm: 1rem; /* 16px */
-  --text-base: 1.125rem; /* 18px */
-  --text-lg: 1.375rem; /* 22px */
-  --text-xl: clamp(1.5rem, 3vw, 2rem); /* 24-32px */
-  --text-2xl: clamp(2rem, 5vw, 3.125rem); /* 32-50px */
-  --text-3xl: clamp(2.5rem, 8vw, 5rem); /* 40-80px */
+  --text-sm: 1rem; /* 16px - body text */
+  --text-base: 1rem; /* 16px - body text */
+  --text-lg: 1.25rem; /* 20px */
+  --text-xl: 1.5rem; /* 24px */
+  --text-2xl: 2rem; /* 32px - H2 semi-bold */
+  --text-3xl: 3rem; /* 48px - H1 bold */
   
   /* Shadows - Professional */
   --shadow-sm: 0 1px 2px 0 rgba(10, 25, 47, 0.05);
@@ -58,33 +58,33 @@
   --shadow-xl: 0 20px 25px -5px rgba(10, 25, 47, 0.1), 0 10px 10px -5px rgba(10, 25, 47, 0.04);
   --shadow-2xl: 0 25px 50px -12px rgba(10, 25, 47, 0.25);
   
-  /* Chart Colors */
-  --chart-1: hsl(174, 100%, 70%);
-  --chart-2: hsl(210, 50%, 15%);
-  --chart-3: hsl(42, 93%, 56%);
-  --chart-4: hsl(147, 79%, 42%);
-  --chart-5: hsl(341, 75%, 51%);
+  /* Chart Colors - Marketing Brand */
+  --chart-1: hsl(340, 84%, 51%); /* Primary brand color */
+  --chart-2: hsl(0, 0%, 77%); /* Secondary grey */
+  --chart-3: hsl(42, 93%, 56%); /* Accent yellow */
+  --chart-4: hsl(147, 79%, 42%); /* Success green */
+  --chart-5: hsl(220, 84%, 51%); /* Accent blue */
 }
 
 .dark {
-  /* Dark Mode - Professional Tech Aesthetic */
+  /* Dark Mode - Marketing Professional */
   --background: hsl(215, 28%, 7%); /* Very dark navy */
   --foreground: hsl(213, 31%, 91%); /* Light text */
   --card: hsl(217, 19%, 12%); /* Dark card background */
   --card-foreground: hsl(213, 31%, 91%);
   --popover: hsl(217, 19%, 12%);
   --popover-foreground: hsl(213, 31%, 91%);
-  --primary: hsl(174, 100%, 70%); /* Bright teal accent in dark mode */
-  --primary-foreground: hsl(215, 28%, 7%);
-  --secondary: hsl(210, 50%, 15%); /* Dark blue for secondary in dark mode */
-  --secondary-foreground: hsl(174, 100%, 70%);
+  --primary: hsl(340, 84%, 51%); /* Brand primary in dark mode */
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(0, 0%, 50%); /* Darker grey for secondary in dark mode */
+  --secondary-foreground: hsl(213, 31%, 91%);
   --muted: hsl(217, 19%, 18%);
   --muted-foreground: hsl(215, 20%, 65%);
   --accent: hsl(217, 19%, 18%);
-  --accent-foreground: hsl(174, 100%, 70%);
+  --accent-foreground: hsl(340, 84%, 51%);
   --border: hsl(217, 19%, 24%);
   --input: hsl(217, 19%, 18%);
-  --ring: hsl(174, 100%, 70%);
+  --ring: hsl(340, 84%, 51%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(0 0% 100%);
   

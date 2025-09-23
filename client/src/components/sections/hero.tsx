@@ -19,7 +19,7 @@ export default function Hero() {
               className="btn-primary text-lg"
               data-testid="button-view-portfolio"
             >
-              View Portfolio
+              View My Work
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link 
