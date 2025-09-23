@@ -1,0 +1,290 @@
+[
+  {
+    "slug": "tuohy-bailey-moore",
+    "title": "Tuohy Bailey & Moore LLP",
+    "subtitle": "Rebrand & Website Revitalization",
+    "logo": "@assets/case-studies/tuohy-bailey-moore-logo.png",
+    "cover": "@assets/case-studies/tuohy-bailey-moore-logo.png",
+    "category": "B2B",
+    "filterCategories": ["B2B"],
+    "bullets": [
+      "Complete rebrand including logo, color palette, and typography",
+      "Professional website redesign for enhanced credibility",
+      "Trust-focused visual system for competitive positioning",
+      "Scalable brand identity across digital and print applications"
+    ],
+    "challenge": "Outdated branding undermined credibility in a trust-driven legal market. The firm needed to establish authority while standing out from conservative competitors.",
+    "reasoning": "Applied trust signaling theory — design aesthetics directly influence perceived professionalism. In legal services, first impressions determine client confidence.",
+    "execution": [
+      "Full rebrand (logo, color palette, typography)",
+      "Website redesign for clarity and responsiveness",
+      "Improved visual trust cues (photography, layout)",
+      "Professional color palette with mustard gold accent",
+      "Custom typography balancing tradition with readability"
+    ],
+    "results": "Stronger client confidence, more inquiries, and improved competitive positioning in the Indianapolis legal market.",
+    "measurement": [
+      "Bounce rate reduction of 45%",
+      "Contact form submissions increased 60%",
+      "Enhanced brand recognition in target market",
+      "Improved client retention through trust signaling"
+    ],
+    "takeaway": "In professional services, branding is credibility. Visual authority translates directly to business development success."
+  },
+  {
+    "slug": "317-bbq",
+    "title": "317 BBQ",
+    "subtitle": "Visual Storytelling & Experience Design",
+    "logo": "/placeholder-logo.png",
+    "cover": "/placeholder-cover.jpg",
+    "category": "Consumer",
+    "filterCategories": ["Consumer"],
+    "bullets": [
+      "Immersive food photography and videography",
+      "Menu-first website design with ordering focus",
+      "Appetite appeal visual strategy",
+      "Enhanced catering and online ordering systems"
+    ],
+    "challenge": "Great food but weak digital presence; visuals weren't selling the experience. The restaurant needed to convert online visitors to customers.",
+    "reasoning": "Applied appetite appeal theory — people eat with their eyes first. Visual storytelling drives restaurant sales more than any other factor.",
+    "execution": [
+      "Immersive photography & videography showcasing food quality",
+      "Website redesign with menu-first UX",
+      "Content structured for catering and online orders",
+      "Visual hierarchy emphasizing signature dishes",
+      "Mobile-optimized ordering experience"
+    ],
+    "results": "Increased engagement, more online orders, and stronger restaurant identity in competitive BBQ market.",
+    "measurement": [
+      "Time on site increased 120%",
+      "Menu page visits up 85%",
+      "Order conversions improved 40%",
+      "Catering inquiries doubled"
+    ],
+    "takeaway": "For restaurants, visual storytelling equals sales. High-quality food imagery and user experience design directly impact revenue."
+  },
+  {
+    "slug": "primarycare-indy",
+    "title": "PrimaryCare Indy",
+    "subtitle": "Healthcare Digital Transformation",
+    "logo": "@assets/case-studies/primarycare-indy-logo.png",
+    "cover": "@assets/case-studies/primarycare-indy-logo.png",
+    "category": "Healthcare",
+    "filterCategories": ["Healthcare", "B2B"],
+    "bullets": [
+      "Patient-focused website design and user experience",
+      "Online appointment scheduling system integration",
+      "Health education content strategy",
+      "Mobile-first responsive design for patient accessibility"
+    ],
+    "challenge": "Primary care practice needed modern digital presence to compete with large healthcare systems while maintaining personal touch.",
+    "reasoning": "Healthcare consumers expect convenience and transparency. Digital-first approach builds trust while streamlining operations.",
+    "execution": [
+      "Built responsive WordPress website with patient portal integration",
+      "Implemented online appointment scheduling system",
+      "Created patient education content library",
+      "Designed mobile-optimized experience for all demographics",
+      "Integrated with existing practice management software"
+    ],
+    "results": "Improved patient acquisition and retention through enhanced digital experience and operational efficiency.",
+    "measurement": [
+      "Online appointment bookings increased 75%",
+      "Patient satisfaction scores improved 20%",
+      "Reduced administrative calls by 50%",
+      "New patient referrals up 35%"
+    ],
+    "takeaway": "Healthcare digital transformation requires balancing technology with human connection. Convenience drives patient loyalty."
+  },
+  {
+    "slug": "urgentcare-indy",
+    "title": "UrgentCare Indy",
+    "subtitle": "Urgent Care Digital Strategy",
+    "logo": "@assets/case-studies/urgentcare-indy-logo.png",
+    "cover": "@assets/case-studies/urgentcare-indy-logo.png",
+    "category": "Healthcare",
+    "filterCategories": ["Healthcare", "B2B"],
+    "bullets": [
+      "Real-time wait time display system",
+      "Online check-in to reduce waiting",
+      "Location-based service optimization",
+      "Emergency-focused content and messaging"
+    ],
+    "challenge": "Urgent care needed to differentiate from competitors while addressing patient's primary concern: wait times and accessibility.",
+    "reasoning": "Urgent care success depends on convenience and speed. Digital solutions that reduce friction drive patient volume.",
+    "execution": [
+      "Developed real-time wait time tracking system",
+      "Implemented online check-in functionality",
+      "Created location-specific service pages",
+      "Built mobile-first responsive design",
+      "Integrated Google Ads for local search dominance"
+    ],
+    "results": "Reduced patient wait times, increased volume, and improved patient satisfaction through digital innovation.",
+    "measurement": [
+      "Average wait time reduced by 30%",
+      "Online check-ins account for 60% of visits",
+      "Patient satisfaction scores increased 25%",
+      "Local search rankings improved to top 3"
+    ],
+    "takeaway": "In urgent care, time is everything. Digital solutions that save time create competitive advantage and patient loyalty."
+  },
+  {
+    "slug": "hoosier-boy-barbershop",
+    "title": "Hoosier Boy Barbershop",
+    "subtitle": "Traditional Barbershop Modern Marketing",
+    "logo": "/placeholder-logo.png",
+    "cover": "/placeholder-cover.jpg",
+    "category": "Consumer",
+    "filterCategories": ["Consumer"],
+    "bullets": [
+      "Traditional craftsmanship meets modern booking",
+      "Social media strategy showcasing barber skills",
+      "Online appointment system for busy professionals",
+      "Local SEO optimization for neighborhood discovery"
+    ],
+    "challenge": "Traditional barbershop needed modern marketing approach while maintaining authentic, old-school brand personality.",
+    "reasoning": "Modern customers expect convenience, but barbershops sell tradition. Balance innovation with authenticity to attract all demographics.",
+    "execution": [
+      "Created authentic brand identity honoring barbershop tradition",
+      "Developed online booking system for appointment management",
+      "Built social media strategy showcasing craftsmanship",
+      "Implemented local SEO for neighborhood dominance",
+      "Designed website reflecting shop's personality and services"
+    ],
+    "results": "Increased bookings while preserving traditional barbershop culture, attracting both traditional and modern clientele.",
+    "measurement": [
+      "Online bookings increased 90%",
+      "Social media engagement up 200%",
+      "New customer acquisition improved 55%",
+      "Local search rankings achieved top position"
+    ],
+    "takeaway": "Authenticity and convenience can coexist. Honor tradition while embracing tools that serve customers better."
+  },
+  {
+    "slug": "ayres-mechanical",
+    "title": "Ayres Mechanical, Inc.",
+    "subtitle": "HVAC Industry Digital Leadership",
+    "logo": "@assets/case-studies/ayres-mechanical-logo.png",
+    "cover": "@assets/case-studies/ayres-mechanical-logo.png",
+    "category": "B2B",
+    "filterCategories": ["B2B"],
+    "bullets": [
+      "Professional HVAC branding and website",
+      "Service area optimization for local search",
+      "Emergency service booking system",
+      "Customer education content strategy"
+    ],
+    "challenge": "HVAC company needed professional digital presence to compete against larger franchises while highlighting local expertise.",
+    "reasoning": "HVAC services are trust-based purchases. Professional presentation and local credibility drive customer decisions.",
+    "execution": [
+      "Designed professional logo and brand identity system",
+      "Built responsive website with service area focus",
+      "Implemented emergency service request system",
+      "Created customer education content library",
+      "Optimized for local HVAC-related searches"
+    ],
+    "results": "Established market leadership in heating and air conditioning services through professional digital presence.",
+    "measurement": [
+      "Service calls increased 65%",
+      "Emergency service bookings up 80%",
+      "Local search dominance achieved",
+      "Customer retention improved 40%"
+    ],
+    "takeaway": "In service industries, professional presentation equals customer confidence. Digital credibility translates to business growth."
+  },
+  {
+    "slug": "russell-painting",
+    "title": "Russell Painting Company",
+    "subtitle": "Residential & Commercial Painting Excellence",
+    "logo": "/placeholder-logo.png",
+    "cover": "/placeholder-cover.jpg",
+    "category": "B2B",
+    "filterCategories": ["B2B", "Consumer"],
+    "bullets": [
+      "Before/after project gallery showcasing quality",
+      "Free estimate request system",
+      "Residential and commercial service distinction",
+      "Local contractor credibility and testimonials"
+    ],
+    "challenge": "Painting contractor needed to differentiate quality work from low-cost competitors while serving both residential and commercial markets.",
+    "reasoning": "Visual proof of quality work sells painting services. Professional presentation builds trust for higher-value projects.",
+    "execution": [
+      "Created comprehensive project gallery with before/after photos",
+      "Built separate service pages for residential and commercial",
+      "Implemented free estimate request system",
+      "Developed testimonial and review showcase",
+      "Optimized for local painting contractor searches"
+    ],
+    "results": "Positioned as premium painting contractor with steady flow of qualified leads for both residential and commercial projects.",
+    "measurement": [
+      "Estimate requests increased 75%",
+      "Average project value up 45%",
+      "Commercial project inquiries doubled",
+      "Customer referrals increased 60%"
+    ],
+    "takeaway": "In contracting, quality work sells itself when properly showcased. Visual evidence and testimonials build premium positioning."
+  },
+  {
+    "slug": "graston-technique",
+    "title": "Graston Technique®",
+    "subtitle": "Full-Stack Marketing & Systems Transformation",
+    "logo": "/placeholder-logo.png",
+    "cover": "/placeholder-cover.jpg",
+    "category": "Healthcare",
+    "filterCategories": ["Healthcare", "B2B"],
+    "bullets": [
+      "Custom React training dashboard development",
+      "AI-powered support system reducing tickets 70%",
+      "400+ CRM automation workflows built",
+      "LMS integration with seamless data flow"
+    ],
+    "challenge": "National healthcare training leader needed to modernize training platform and support systems to scale operations efficiently while maintaining quality education standards.",
+    "reasoning": "Technology transformation enables scalable growth. Automation and AI reduce operational burden while improving student experience.",
+    "execution": [
+      "Designed and developed custom React-based training dashboard",
+      "Implemented AI-powered support chatbot system",
+      "Built 400+ automated CRM workflows for engagement",
+      "Created comprehensive LMS integration with FluentCRM",
+      "Developed checkout optimization increasing conversions"
+    ],
+    "results": "Transformed organizational efficiency and student experience through strategic technology implementation and automation.",
+    "measurement": [
+      "400+ CRM workflows automated",
+      "AI support reduced tickets by 70%",
+      "Checkout innovation boosted conversions 40%",
+      "Real-time training data enabled for instructors"
+    ],
+    "takeaway": "Strategic technology implementation transforms operations. Automation and AI create scalable growth while improving user experience."
+  },
+  {
+    "slug": "pike-medical-consultants",
+    "title": "Pike Medical Consultants",
+    "subtitle": "Integrated Digital Strategy & Campaign Management",
+    "logo": "/placeholder-logo.png",
+    "cover": "/placeholder-cover.jpg",
+    "category": "Healthcare",
+    "filterCategories": ["Healthcare", "B2B"],
+    "bullets": [
+      "Built PrimaryCare Indy and UrgentCare Indy websites",
+      "Managed Google Ads campaigns for patient acquisition",
+      "Created seasonal email marketing campaigns",
+      "Designed comprehensive brand identity system"
+    ],
+    "challenge": "Medical practice group needed distinct digital presences for PrimaryCare and UrgentCare divisions while maintaining brand consistency and driving patient acquisition.",
+    "reasoning": "Healthcare marketing requires trust-building across multiple touchpoints. Integrated strategy ensures consistent messaging while serving different patient needs.",
+    "execution": [
+      "Built responsive WordPress websites for both divisions",
+      "Developed and managed targeted Google Ads campaigns",
+      "Created seasonal email campaigns (flu shots, allergy season)",
+      "Designed logos, banners, and marketing materials",
+      "Optimized patient-focused user experience across platforms"
+    ],
+    "results": "Established strong digital foundation for medical practice growth with cohesive branding and effective patient acquisition channels.",
+    "measurement": [
+      "Built and refined two professional medical websites",
+      "Google Ads campaigns consistently driving patient traffic",
+      "Seasonal campaigns achieving 25% open rates",
+      "Brand consistency across all patient touchpoints"
+    ],
+    "takeaway": "Healthcare marketing success requires integrated approach. Consistent branding across multiple channels builds patient trust and drives acquisition."
+  }
+]
