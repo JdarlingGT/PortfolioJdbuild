@@ -10,6 +10,7 @@ import FloatingChatButton from "@/components/FloatingChatButton";
 import Home from "@/pages/home";
 import About from "@/pages/about";
 import CaseStudies from "@/pages/case-studies";
+import CaseStudyDetail from "@/pages/case-study-detail";
 import CreativeDesign from "@/pages/creative-design";
 import Skills from "@/pages/skills";
 import Process from "@/pages/process";
@@ -30,6 +31,7 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/case-studies" component={CaseStudies} />
+          <Route path="/case-studies/:id" component={CaseStudyDetail} />
           <Route path="/creative-design" component={CreativeDesign} />
           <Route path="/skills" component={Skills} />
           <Route path="/process" component={Process} />

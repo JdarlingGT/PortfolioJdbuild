@@ -10,8 +10,7 @@ export default function Hero() {
             Jacob Darling — <span className="text-primary">Brand Strategist</span> & Marketing Architect
           </h1>
           <p className="text-xl leading-relaxed max-w-4xl mx-auto mb-12">
-            I design a brand's creative vision, then build the intelligent system that brings it to life. 
-            From compelling storytelling to scalable automation, I deliver complete marketing ecosystems that drive results.
+            From compelling storytelling to scalable automation, I deliver marketing ecosystems that drive results.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link 

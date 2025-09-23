@@ -1,5 +1,8 @@
 import { type CaseStudy } from "@/lib/types";
 import { useSEO, createBreadcrumbSchema } from "@/hooks/use-seo";
+import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 import blackLetterLogoColor from "@assets/black-letter-logo-color.png";
 import blackLetterLogoGrayscale from "@assets/black-letter-logo-grayscale.png";
 
@@ -22,10 +25,10 @@ const caseStudies: CaseStudy[] = [
     ],
     impact: "Transformed the organization's operational efficiency and student experience through strategic technology implementation.",
     results: [
-      "70% reduction in support tickets through automation",
-      "400+ CRM workflows deployed for seamless operations",
-      "Enhanced training platform serving thousands of healthcare professionals",
-      "Streamlined administrative processes across multiple departments"
+      "400+ CRM workflows built",
+      "AI-powered support reduced tickets by 70%",
+      "Checkout innovation boosted conversions 40%",
+      "Instructor dashboard enabled real-time training data"
     ]
   },
   {
@@ -46,10 +49,10 @@ const caseStudies: CaseStudy[] = [
     ],
     impact: "Established strong digital foundation for medical practice growth with cohesive branding and effective patient acquisition channels.",
     results: [
-      "Dual-branded websites serving distinct patient populations",
-      "Successful Google Ads campaigns driving qualified patient leads",
-      "Engaging seasonal email campaigns improving patient retention",
-      "Complete brand package supporting offline and online marketing efforts"
+      "Built/refined websites (PrimaryCare Indy, UrgentCare Indy)",
+      "Google Ads campaigns driving patient traffic",
+      "Seasonal email campaigns (flu shots, allergy season)",
+      "Logo, banners, signage for brand consistency"
     ]
   },
   {
@@ -248,6 +251,21 @@ export default function CaseStudies() {
                             ))}
                           </ul>
                         )}
+                      </div>
+                    )}
+
+                    {/* View Details Button - Only for main case studies */}
+                    {(caseStudy.id === 'graston-technique' || caseStudy.id === 'pike-medical-consultants') && (
+                      <div className="pt-4">
+                        <Link href={`/case-studies/${caseStudy.id}`}>
+                          <Button 
+                            className="w-full sm:w-auto"
+                            data-testid={`button-view-details-${caseStudy.id}`}
+                          >
+                            View Full Case Study
+                            <ArrowRight className="w-4 h-4 ml-2" />
+                          </Button>
+                        </Link>
                       </div>
                     )}
                   </div>

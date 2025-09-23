@@ -29,13 +29,13 @@ const technicalCategories: TechnicalCategory[] = [
     icon: Zap,
     description: "Site speed, Core Web Vitals, and optimization expertise",
     skills: [
+      "Cloudflare CDN & optimization",
+      "WP Rocket caching",
+      "LiteSpeed Cache",
+      "Apache/PHP tuning",
       "Core Web Vitals optimization",
-      "PageSpeed Insights optimization",
       "Database query optimization",
-      "CDN implementation & configuration",
-      "Image optimization & compression",
-      "Caching strategies & implementation",
-      "Minification & bundling"
+      "Image optimization & compression"
     ]
   },
   {
@@ -43,13 +43,13 @@ const technicalCategories: TechnicalCategory[] = [
     icon: Shield,
     description: "Enterprise-grade security and infrastructure management",
     skills: [
+      "Web Application Firewall (WAF)",
+      "Bot Management",
+      "DNSSEC configuration",
+      "API key hardening",
       "SSL/TLS configuration",
       "Cloudflare security setup",
-      "WordPress security hardening",
-      "GDPR compliance implementation",
-      "Firewall configuration",
-      "Backup & disaster recovery",
-      "Security auditing & monitoring"
+      "WordPress security hardening"
     ]
   },
   {
@@ -57,10 +57,10 @@ const technicalCategories: TechnicalCategory[] = [
     icon: Activity,
     description: "Advanced tracking, insights, and conversion optimization",
     skills: [
-      "Google Analytics 4 setup & optimization",
-      "Google Tag Manager implementation",
+      "Google Tag Manager (GTM)",
+      "Google Analytics 4 (GA4)",
+      "Custom event scripting",
       "Conversion tracking & attribution",
-      "Custom event tracking",
       "E-commerce tracking",
       "Custom dashboards & reporting",
       "A/B testing & optimization"
@@ -71,13 +71,13 @@ const technicalCategories: TechnicalCategory[] = [
     icon: Server,
     description: "Cloud infrastructure and deployment expertise",
     skills: [
+      "Server monitoring",
+      "PHP upgrades",
+      "Debugging & troubleshooting",
+      "Scalability optimization",
       "Linux server administration",
       "Apache/Nginx configuration",
-      "MySQL database management",
-      "Git version control",
-      "CI/CD pipeline setup",
-      "Domain & DNS management",
-      "Cloud deployment (AWS, Cloudflare)"
+      "MySQL database management"
     ]
   }
 ];
@@ -90,53 +90,73 @@ interface TechnologyStack {
 
 const technologyStacks: TechnologyStack[] = [
   {
-    category: "WordPress Stack",
-    icon: Code,
+    category: "CDN/Security",
+    icon: Shield,
     technologies: [
-      "WordPress (Custom themes & plugins)",
-      "FluentCRM",
-      "LearnDash",
-      "WooCommerce",
-      "Advanced Custom Fields",
-      "Elementor",
-      "WordPress REST API"
+      "Cloudflare",
+      "Netdata"
     ]
   },
   {
-    category: "Analytics & Tracking",
+    category: "Analytics",
     icon: Activity,
     technologies: [
-      "Google Tag Manager (GTM)",
-      "Google Analytics 4 (GA4)",
-      "Google Search Console",
-      "Facebook Pixel",
-      "Conversion tracking",
-      "Custom events & goals"
+      "GTM",
+      "GA4",
+      "Umami"
     ]
   },
   {
-    category: "Programming Languages",
+    category: "Ads",
+    icon: Globe,
+    technologies: [
+      "Google Ads",
+      "PixelYourSite Pro",
+      "OptinMonster"
+    ]
+  },
+  {
+    category: "Hosting",
+    icon: Server,
+    technologies: [
+      "Liquid Web",
+      "GoDaddy",
+      "Apache",
+      "PHP-FPM"
+    ]
+  },
+  {
+    category: "WordPress",
+    icon: Code,
+    technologies: [
+      "WP-CLI",
+      "MU Plugins",
+      "Cron",
+      "Heartbeat API"
+    ]
+  },
+  {
+    category: "Plugins",
+    icon: Settings,
+    technologies: [
+      "FluentCRM",
+      "Gravity Forms",
+      "WPForms",
+      "LearnDash",
+      "Divi",
+      "Autoptimize"
+    ]
+  },
+  {
+    category: "Languages",
     icon: Database,
     technologies: [
       "PHP",
       "JavaScript",
-      "SQL (MySQL)",
-      "HTML5",
-      "CSS3",
-      "Python (basics)",
-      "Bash scripting"
-    ]
-  },
-  {
-    category: "Marketing & CRM Tools",
-    icon: Globe,
-    technologies: [
-      "FluentCRM workflows",
-      "Email marketing automation",
-      "Zapier integrations",
-      "Mailchimp",
-      "HubSpot",
-      "Lead scoring systems"
+      "jQuery",
+      "SQL",
+      "CSS",
+      "HTML"
     ]
   }
 ];

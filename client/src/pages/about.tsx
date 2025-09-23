@@ -88,7 +88,7 @@ export default function About() {
                 </div>
                 <h3 className="font-semibold text-foreground mb-2">Translate Complexity</h3>
                 <p className="text-sm text-muted-foreground">
-                  BusFront the gap between creative vision and technical implementation.
+                  Bridge the gap between creative vision and technical implementation.
                 </p>
               </div>
               

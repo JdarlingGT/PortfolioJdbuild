@@ -169,7 +169,7 @@ export class MemStorage implements IStorage {
       },
       {
         title: "Be Free Home and Life",
-        description: "Modern lifestyle brand identity with clean typography and vibrant color blocking for home and life consulting services.",
+        description: "Turquoise + gold palette conveys trust & optimism. Modular 'BF' lockup symbolizes structure + freedom. Works across digital & print.",
         category: "Branding",
         year: 2020,
         imageUrl: "/attached_assets/BF MOGOGRAM final-01_1758615637484.png",
@@ -180,7 +180,7 @@ export class MemStorage implements IStorage {
       },
       {
         title: "Circle City Kicks",
-        description: "Urban sneaker marketplace branding featuring Indianapolis skyline silhouette with dynamic typography and street culture aesthetics.",
+        description: "Sneakers on power lines + Indy skyline = streetwear credibility. Bold condensed typography → energy & strength. Circular badge ideal for stickers, apparel, and socials.",
         category: "Logo Design",
         year: 2019,
         imageUrl: "/attached_assets/lOGO 7_1758615637517.jpg",
@@ -221,6 +221,28 @@ export class MemStorage implements IStorage {
         featured: false,
         clientName: "Personal Project",
         projectType: "Pattern Design"
+      },
+      {
+        title: "Black Letter Legal",
+        description: "Serif-inspired logo evokes authority & professionalism. Black/white palette → credibility + trust. High legibility across decks, site, cards.",
+        category: "Logo Design",
+        year: 2021,
+        imageUrl: "/attached_assets/black-letter-logo-color.png",
+        tools: ["Illustrator", "InDesign"],
+        featured: true,
+        clientName: "Black Letter Legal",
+        projectType: "Legal Branding"
+      },
+      {
+        title: "Gomez Craft Barbecue",
+        description: "Rustic typography & textures → authenticity. Smokehouse cues fit competitive BBQ market. Flexible mark for menus, signage, apparel.",
+        category: "Logo Design",
+        year: 2022,
+        imageUrl: "/attached_assets/gomez-bbq-placeholder.png",
+        tools: ["Illustrator", "Photoshop"],
+        featured: true,
+        clientName: "Gomez Craft Barbecue",
+        projectType: "Restaurant Branding"
       }
     ];
 
