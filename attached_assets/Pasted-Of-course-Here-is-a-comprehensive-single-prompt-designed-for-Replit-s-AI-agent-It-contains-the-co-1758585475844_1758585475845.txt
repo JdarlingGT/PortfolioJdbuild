@@ -1,0 +1,211 @@
+Of course. Here is a comprehensive, single-prompt designed for Replit's AI agent. It contains the complete strategy, structure, file modifications, and content we've developed. You can copy and paste this directly into the Replit agent's chat to instruct it to build out the full portfolio site.
+
+-----
+
+### **Replit AI Prompt: Build My Gatsby Portfolio Website**
+
+**Hello\! Please act as an expert software developer and build out my personal portfolio website based on the following detailed instructions. The goal is to create a professional and impressive portfolio that showcases my skills as a "Marketing Strategist & Systems Architect."**
+
+**Project Overview:**
+You will be modifying an existing Gatsby.js project. The core task is to update the site's structure and content to better reflect my hybrid skillset, which combines marketing strategy with deep technical expertise. This involves creating new pages, new components, and updating the content in existing files.
+
+**Technology Stack:**
+The project uses Gatsby, React, and Styled Components. All new components should be built using these technologies and adhere to the existing styling conventions found in the `/src/styles` directory.
+
+-----
+
+### **Step 1: File Structure Modifications**
+
+Please create the following new pages and content directories:
+
+1.  **New Page:** Create a "Case Studies" page at `src/pages/case-studies.js`.
+2.  **New Page:** Create a "Technical Skills" page at `src/pages/skills.js`.
+3.  **New Content Directory:** Create a new folder at `content/case-studies/`.
+4.  **New Case Study Folders:** Inside `content/case-studies/`, create three new folders:
+      * `graston-technique`
+      * `black-letter-legal`
+      * `gomez-craft-barbecue`
+
+-----
+
+### **Step 2: Homepage Content (`src/pages/index.js`)**
+
+Please update the homepage to feature the new narrative and key metrics.
+
+**A. Update the Hero Section (`src/components/sections/hero.js`):**
+
+  * **Headline (`h1`):** `Jacob Darling — Brand Strategist & Marketing Architect`
+  * **Subtext (`p`):** `I design a brand's creative vision, then build the intelligent system that brings it to life. From compelling storytelling to scalable automation, I deliver complete marketing ecosystems that drive results.`
+  * **Button:** The button text should be `View My Work` and it should link to the new `/case-studies` page.
+
+**B. Create and Add a New "Key Metrics" Component:**
+
+  * Create a new component file at `src/components/sections/keyMetrics.js`.
+  * This component should display the following data in a clean, professional grid or flexbox layout:
+      * **Metric 1:** Number: `70%`, Description: `Reduction in support tickets via AI & automation.`
+      * **Metric 2:** Number: `400+`, Description: `CRM workflows built for lead scoring, tracking, and re-engagement.`
+      * **Metric 3:** Number: `40%`, Description: `Increase in e-commerce conversions through checkout innovation.`
+      * **Metric 4:** Number: `35%`, Description: `Increase in qualified leads post-SEO and brand overhaul.`
+  * Import and add this `KeyMetrics` component to `src/pages/index.js`, placing it directly below the `Hero` component.
+
+-----
+
+### **Step 3: About Me Page Content**
+
+Please update the "About Me" section to tell my professional story.
+
+**Update `src/components/sections/about.js` with the following content:**
+
+```javascript
+// The main text content within the component's render method:
+<p>Great marketing ideas often break at the handoff—the critical point where a creative vision meets the complex reality of technical execution. My career has been built to solve this problem.</p>
+<p>I'm Jacob Darling, a marketing leader who operates as both a brand strategist and a systems architect. On one side, I direct bold rebrands, craft compelling narratives, and launch creative campaigns. On the other, I design and build the underlying technical infrastructure—the CRM logic, automation workflows, and web architecture—that makes those campaigns scalable, measurable, and sustainable.</p>
+<p>This hybrid approach allows me to create deeply integrated solutions that don't just look good, but function brilliantly. Whether I'm relaunching a national brand or building a custom GPT-powered tool, I thrive on turning abstract goals into powerful, revenue-focused marketing engines.</p>
+```
+
+-----
+
+### **Step 4: Case Studies Page and Content**
+
+Please build the new Case Studies page and populate it with the detailed content below.
+
+**A. Create the Case Studies Page (`src/pages/case-studies.js`):**
+
+  * This page should query and display the markdown files from the `content/case-studies/` directory.
+  * Style it similarly to the existing project layouts, displaying each case study as a card or a section.
+
+**B. Create the Case Study Markdown Files:**
+
+**1. File: `content/case-studies/graston-technique/index.md`**
+
+```markdown
+---
+title: 'Graston Technique®'
+subtitle: 'Full-Stack Marketing & Systems Transformation'
+tech: ['WordPress', 'FluentCRM', 'LearnDash', 'React', 'Google Tag Manager', 'Cloudflare']
+cover: './graston.png'
+---
+
+### The Challenge
+Graston Technique®, a national leader in healthcare training, faced a fragmented and inefficient digital ecosystem. Their marketing systems lacked scalability, administrative tasks were manual, and the instructional team had zero visibility into event registration or sales data, creating significant operational bottlenecks.
+
+### My Solution as Marketing Architect
+I led a complete marketing and technology transformation, architecting a new, scalable ecosystem built on WordPress, LearnDash, and FluentCRM. The goal was to unify brand strategy with a robust digital infrastructure.
+
+* **Custom Instructor Dashboard:** I designed and built an internal dashboard using React and Mapbox. This tool gave instructors real-time visibility into event rosters, attendee details, and instrument sales, empowering them to personalize their teaching and follow-ups.
+* **AI-Powered Support System:** I integrated a GPT-powered assistant to handle common CEU questions and user routing. This initiative **reduced support ticket volume by a staggering 70%** and freed up the administrative team to focus on higher-value tasks.
+* **Advanced CRM Automation:** I created over 400 distinct CRM workflows to automate everything from lead scoring and CEU tracking to voucher redemptions and complex re-engagement sequences.
+* **E-commerce Innovation:** I developed a "Buy Now, Choose Later" checkout process that **increased CEU bundle conversions by 40%**.
+
+### The Impact
+This full-stack transformation resulted in a highly efficient, automated, and data-driven marketing engine. We re-established brand authority, streamlined operations, and created a powerful platform for future growth.
+```
+
+*(Note: Ensure you have an image named `graston.png` in this folder for the cover image.)*
+
+**2. File: `content/case-studies/black-letter-legal/index.md`**
+
+```markdown
+---
+title: 'Black Letter Legal'
+subtitle: 'High-Conversion B2B Lead Generation'
+tech: ['WordPress', 'SEO', 'Content Strategy', 'LinkedIn Marketing', 'CRM']
+cover: './legal.png' # You will need to add an image here
+---
+
+### The Challenge
+Black Letter Legal, a specialized legal research firm, needed to generate more high-value B2B leads in a crowded market. Their digital presence lacked authority and they had no systematic process for nurturing prospects.
+
+### My Solution as Marketing Strategist
+I developed and executed a multi-channel digital strategy focused on establishing thought leadership and building a predictable lead generation funnel.
+
+* **Content & SEO Overhaul:** I led a complete website redesign with a focus on SEO and authoritative content. This included creating in-depth case study showcases and SEO-optimized articles targeting legal professionals.
+* **LinkedIn Marketing Engine:** I implemented a robust LinkedIn content and networking strategy. This positioned the firm's partners as industry experts and **grew targeted engagement by over 300%**.
+* **CRM & Lead Nurturing:** I integrated a CRM system complete with lead scoring and automated email nurturing sequences. This allowed us to systematically follow up with prospects based on their engagement, ensuring no lead went cold.
+
+### The Impact
+The new strategy transformed the firm's client acquisition process. We achieved a **250% increase in qualified leads**, an **80% improvement in case conversion rate**, and a **35% growth in the average case value**.
+```
+
+**3. File: `content/case-studies/gomez-craft-barbecue/index.md`**
+
+```markdown
+---
+title: 'Gomez Craft Barbecue'
+subtitle: 'Restaurant Brand Launch & Digital Presence'
+tech: ['Branding', 'Web Design', 'Mobile App', 'Local SEO', 'Social Media']
+cover: './bbq.png' # You will need to add an image here
+---
+
+### The Challenge
+Gomez Craft Barbecue was a new entrant in a highly competitive local food scene. They needed to build a powerful brand identity and a strong digital presence from scratch to attract customers and drive orders.
+
+### My Solution as Creative Builder
+I built their entire digital footprint, from brand identity to a custom mobile ordering application.
+
+* **Brand Identity & Visuals:** I developed a distinctive and authentic brand identity that reflected the restaurant's craft barbecue heritage. This included professional food photography and a complete social media visual kit.
+* **Custom Mobile App:** I designed and developed a custom mobile app for online ordering and a customer loyalty program, making it easy for customers to order and stay engaged.
+* **Local SEO & Social Media:** I implemented a targeted local SEO strategy to ensure the restaurant appeared in top search results for relevant terms. I also managed their social media channels, running campaigns that drove high levels of engagement.
+
+### The Impact
+The cohesive brand and digital strategy was a huge success. We **increased online orders by 400%**, grew the repeat customer base by **50%**, and **boosted social media engagement by 200%** in the first six months.
+```
+
+-----
+
+### **Step 5: Technical Skills Page Content**
+
+Please build the new Technical Skills page to showcase my deep technical expertise.
+
+**Create the Technical Skills Page (`src/pages/skills.js`) with the following content:**
+
+**A. Add this narrative introduction at the top of the page:**
+
+> My experience extends deep into the technical layers that power modern marketing. I specialize in transforming digital platforms into high-performance, secure, and measurable assets.
+>
+>   * **Web Performance & Optimization:** I take a full-stack approach to speed, from edge caching and CDN configuration with **Cloudflare** to server-side tuning of **Apache** and **PHP-FPM**. I specialize in WordPress performance, leveraging tools like **LiteSpeed Cache** and **WP Rocket**, optimizing databases, and refactoring heavy components to achieve superior Core Web Vitals and lightning-fast user experiences.
+>   * **Security & Infrastructure Hardening:** I build resilient and secure web environments. This includes deploying and managing **Cloudflare's WAF**, Bot Management, and Rate-Limiting rules, as well as hardening servers with security headers, configuring DNSSEC, and locking down API keys to mitigate risks and stop common attack vectors.
+>   * **Analytics & Conversion Tracking Engineering:** I architect robust data layers and tracking systems using **Google Tag Manager (GTM)**. My expertise includes cleaning up legacy tags, implementing GA4-native tracking, and writing custom scripts to capture critical engagement and conversion events—from Gravity Forms submissions to e-commerce purchases—ensuring every marketing dollar can be accurately attributed.
+>   * **Server Administration & DevOps:** I am proficient in managing and monitoring server resources, diagnosing performance bottlenecks with tools like **htop** and **Netdata**, and performing critical backend operations like **PHP upgrades**, debugging fatal errors, and optimizing server configurations to ensure stability and scalability.
+
+**B. Add these categorized lists below the introduction:**
+
+> ### Technology & Software
+>
+> **Software & Platform Knowledge**
+>
+>   * **CDN & Security:** Cloudflare (WAF, CDN, Rules, Bot Management), Netdata
+>   * **Analytics & Tag Management:** Google Tag Manager (GTM), Google Analytics 4 (GA4), Umami
+>   * **Advertising & Conversion:** Google Ads, PixelYourSite Pro, OptinMonster
+>   * **Hosting & Server:** Liquid Web, GoDaddy, Apache, PHP-FPM
+>   * **WordPress Core:** WP-CLI, Custom MU Plugins, WP-Cron, Heartbeat API
+>   * **WordPress Plugins:**
+>       * **Caching:** WP Rocket, LiteSpeed Cache, Autoptimize
+>       * **CRM:** FluentCRM
+>       * **Forms:** Gravity Forms, WP Forms
+>       * **LMS:** LearnDash
+>       * **Builder:** Divi Builder
+>   * **Development Tools:** Git, VS Code
+>
+> **Programming, Scripting & Query Languages**
+>
+>   * PHP
+>   * JavaScript
+>   * jQuery
+>   * SQL
+>   * CSS
+>   * HTML
+
+-----
+
+### **Step 6: Contact Page Content**
+
+Please add a final hook to the contact section.
+
+**In `src/components/sections/contact.js`, add this line of text (`<p>`) just above the contact form or main call-to-action button:**
+
+> `I'm always interested in new challenges and opportunities. Whether you have a project in mind or just want to connect, I'd love to hear from you.`
+
+-----
+
+Please execute these instructions. Let me know if you have any questions.

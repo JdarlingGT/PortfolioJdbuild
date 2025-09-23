@@ -1,0 +1,215 @@
+help me add the all updates to this https://github.com/yesmannow/jacob-darling-portfolio   Analysis of the Current GitHub Repository:
+Technology Stack: The portfolio is built with Gatsby, React, and Styled Components. This demonstrates a solid understanding of modern front-end development, which is a major asset.
+Content Structure: The content is organized into markdown files within the /content directory, separated by type (jobs, projects, featured). This is a scalable and maintainable approach.
+Design and UX: The existing design is clean, professional, and developer-centric. It effectively showcases your coding projects and technical skills.
+Strategic Recommendations for Improvement:
+The primary opportunity is to evolve the portfolio from a developer-focused site to a more comprehensive "Marketing Strategist & Systems Architect" showcase. We need to tell a clearer story that bridges the gap between your technical skills and the marketing results you deliver. A hiring manager from a marketing department should immediately understand your value, even if they aren't a developer.
+Here is my proposed structure and content plan.
+Proposed Portfolio Structure and Content
+This structure is designed to guide a visitor—whether a recruiter, a marketing director, or a technical lead—through a compelling narrative that showcases the full range of your abilities.
+
+The Homepage: Your Value Proposition in 30 Seconds
+The goal of the homepage is to immediately answer the question: "Who are you and what do you do?"
+
+A. Hero Section (src/components/sections/hero.js):
+Headline: Jacob Darling — Brand Strategist & Marketing Architect
+Subtext: I design a brand's creative vision, then build the intelligent system that brings it to life. From compelling storytelling to scalable automation, I deliver complete marketing ecosystems that drive results.
+Call to Action Button: "View My Work" that links to the new "Case Studies" section.
+B. Key Metrics Showcase (New Component):
+Immediately below the hero, add a visually engaging section with 3-4 of your most impressive, quantifiable achievements. This provides instant credibility.
+70% Reduction in support tickets via automation.
+400+ CRM Workflows Built for lead scoring, tracking, and re-engagement.
+40% Increase in e-commerce conversions through checkout innovation.
+35% Increase in qualified leads post-SEO and brand overhaul.
+C. Featured Case Studies (src/components/sections/featured.js):
+Instead of just "Featured Projects," rename this to "Featured Case Studies."
+Showcase 3 of your most impactful projects that tell the "strategist + architect" story. I recommend:
+Graston Technique®: Full-stack marketing and systems transformation.
+Black Letter Legal: High-conversion B2B lead generation.
+Gomez Craft Barbecue: Restaurant brand launch with mobile ordering.
+
+The "About Me" Page: Your Story and Expertise
+This page should build a personal connection and elaborate on your unique hybrid skillset.
+
+A. Introduction (src/components/sections/about.js):
+Use the narrative intro we crafted:
+"Great marketing ideas often break at the handoff... My career has been built to solve this problem."
+B. Areas of Expertise (New Component):
+Add the "Areas of Expertise" narrative section we developed. This is crucial for non-technical visitors to understand your capabilities.
+"My experience extends deep into the technical layers that power modern marketing..."
+C. Professional Journey (src/components/sections/jobs.js):
+Keep this section as is, but ensure the descriptions are concise and impact-oriented.
+
+The "Case Studies" Page: Proof of Your Impact
+This is the most important section for a hiring manager. It's where you show, not just tell. I recommend creating a new page for this.
+
+A. Create a New "Case Studies" Page (src/pages/case-studies.js):
+This page will feature your most detailed project stories.
+For each case study, use a consistent "Problem, Solution, Impact" format.
+B. Content for Case Studies (New Markdown Files in /content/case-studies/):
+graston-technique.md: Detail the full-stack transformation.
+black-letter-legal.md: Focus on the B2B lead generation funnel.
+gomez-craft-barbecue.md: Highlight the brand launch and digital presence.
+
+The "Technical Skills" Page: The Deep Dive
+This page is for the technical audience. It's where you can consolidate all the impressive details from your task list.
+
+A. Create a New "Skills" Page (src/pages/skills.js):
+This will be a central hub for your technical capabilities.
+B. Technical Showcase (New Component):
+Create a component that displays your technical projects in a filterable grid. A visitor should be able to filter by categories like:
+Performance
+Security
+Analytics
+Automation
+Infrastructure
+C. Technology & Software Lists (New Component):
+Add the categorized lists we created for Software & Platform Knowledge and Programming, Scripting & Query Languages. This is highly valuable, scannable information for a technical recruiter.
+
+The "Contact" Page: The Call to Action
+Keep it Simple: The current contact form is good.
+
+Add a Final Hook: Above the form, add a compelling closing statement:
+"I'm always interested in new challenges and opportunities. Whether you have a project in mind or just want to connect, I'd love to hear from you."
+This new structure will create a powerful and persuasive narrative for your portfolio. It guides the user from a high-level understanding of your value down to the specific technical details that prove your expertise.
+What do you think of this plan? If you're ready, we can start working on the content for each of these new sections.
+ove it let get started and build this out
+Copy creator
+Show thinking
+Of course. Let's start building. Here is the comprehensive content for your new portfolio, structured to be easily placed within your existing Gatsby project.
+I've organized the content by page and component, following the plan we laid out. You can copy and paste the markdown and text directly into your project files.
+
+Homepage Content
+This content is designed to create an immediate and powerful first impression.
+
+Hero Section
+(Update src/components/sections/hero.js)
+Headline (h1): Jacob Darling — Brand Strategist & Marketing Architect
+Subtext (p): I design a brand's creative vision, then build the intelligent system that brings it to life. From compelling storytelling to scalable automation, I deliver complete marketing ecosystems that drive results.
+Button: View My Work (linking to the /case-studies page)
+Key Metrics Showcase
+(Create a new component, e.g., src/components/sections/keyMetrics.js, and add it to src/pages/index.js below the Hero)
+This section provides immediate proof of your impact.
+Headline (h2): Results I Deliver
+Metric 1:
+Number: 70%
+Description: Reduction in support tickets via AI & automation.
+Metric 2:
+Number: 400+
+Description: CRM workflows built for lead scoring, tracking, and re-engagement.
+Metric 3:
+Number: 40%
+Description: Increase in e-commerce conversions through checkout innovation.
+Metric 4:
+Number: 35%
+Description: Increase in qualified leads post-SEO and brand overhaul.
+
+About Me Page Content
+This page tells your professional story.
+
+About Me Section
+(Update src/components/sections/about.js)
+Markdown
+Great marketing ideas often break at the handoff—the critical point where a creative vision meets the complex reality of technical execution. My career has been built to solve this problem.
+I'm Jacob Darling, a marketing leader who operates as both a brand strategist and a systems architect. On one side, I direct bold rebrands, craft compelling narratives, and launch creative campaigns. On the other, I design and build the underlying technical infrastructure—the CRM logic, automation workflows, and web architecture—that makes those campaigns scalable, measurable, and sustainable.
+This hybrid approach allows me to create deeply integrated solutions that don't just look good, but function brilliantly. Whether I'm relaunching a national brand or building a custom GPT-powered tool, I thrive on turning abstract goals into powerful, revenue-focused marketing engines.
+3. Case Studies Page Content
+This new page will be the heart of your portfolio, showcasing your best work.
+(Create a new page at src/pages/case-studies.js and create the corresponding markdown files.)
+Case Study 1: Graston Technique®
+(Create file: content/case-studies/graston-technique/index.md)
+Markdown
+
+title: 'Graston Technique®'
+subtitle: 'Full-Stack Marketing & Systems Transformation'
+tech: ['WordPress', 'FluentCRM', 'LearnDash', 'React', 'Google Tag Manager', 'Cloudflare']
+cover: './graston.png'
+The Challenge
+Graston Technique®, a national leader in healthcare training, faced a fragmented and inefficient digital ecosystem. Their marketing systems lacked scalability, administrative tasks were manual, and the instructional team had zero visibility into event registration or sales data, creating significant operational bottlenecks.
+My Solution as Marketing Architect
+I led a complete marketing and technology transformation, architecting a new, scalable ecosystem built on WordPress, LearnDash, and FluentCRM. The goal was to unify brand strategy with a robust digital infrastructure.
+
+Custom Instructor Dashboard: I designed and built an internal dashboard using React and Mapbox. This tool gave instructors real-time visibility into event rosters, attendee details, and instrument sales, empowering them to personalize their teaching and follow-ups.
+AI-Powered Support System: I integrated a GPT-powered assistant to handle common CEU questions and user routing. This initiative reduced support ticket volume by a staggering 70% and freed up the administrative team to focus on higher-value tasks.
+Advanced CRM Automation: I created over 400 distinct CRM workflows to automate everything from lead scoring and CEU tracking to voucher redemptions and complex re-engagement sequences.
+E-commerce Innovation: I developed a "Buy Now, Choose Later" checkout process that increased CEU bundle conversions by 40%.
+
+The Impact
+This full-stack transformation resulted in a highly efficient, automated, and data-driven marketing engine. We re-established brand authority, streamlined operations, and created a powerful platform for future growth.
+Case Study 2: Black Letter Legal
+(Create file: content/case-studies/black-letter-legal/index.md)
+Markdown
+
+title: 'Black Letter Legal'
+subtitle: 'High-Conversion B2B Lead Generation'
+tech: ['WordPress', 'SEO', 'Content Strategy', 'LinkedIn Marketing', 'CRM']
+cover: './your-image-here.png' # Add a relevant image
+The Challenge
+Black Letter Legal, a specialized legal research firm, needed to generate more high-value B2B leads in a crowded market. Their digital presence lacked authority and they had no systematic process for nurturing prospects.
+My Solution as Marketing Strategist
+I developed and executed a multi-channel digital strategy focused on establishing thought leadership and building a predictable lead generation funnel.
+
+Content & SEO Overhaul: I led a complete website redesign with a focus on SEO and authoritative content. This included creating in-depth case study showcases and SEO-optimized articles targeting legal professionals.
+LinkedIn Marketing Engine: I implemented a robust LinkedIn content and networking strategy. This positioned the firm's partners as industry experts and grew targeted engagement by over 300%.
+CRM & Lead Nurturing: I integrated a CRM system complete with lead scoring and automated email nurturing sequences. This allowed us to systematically follow up with prospects based on their engagement, ensuring no lead went cold.
+
+The Impact
+The new strategy transformed the firm's client acquisition process. We achieved a 250% increase in qualified leads, an 80% improvement in case conversion rate, and a 35% growth in the average case value.
+Case Study 3: Gomez Craft Barbecue
+(Create file: content/case-studies/gomez-craft-barbecue/index.md)
+Markdown
+
+title: 'Gomez Craft Barbecue'
+subtitle: 'Restaurant Brand Launch & Digital Presence'
+tech: ['Branding', 'Web Design', 'Mobile App', 'Local SEO', 'Social Media']
+cover: './your-image-here.png' # Add a relevant image
+The Challenge
+Gomez Craft Barbecue was a new entrant in a highly competitive local food scene. They needed to build a powerful brand identity and a strong digital presence from scratch to attract customers and drive orders.
+My Solution as Creative Builder
+I built their entire digital footprint, from brand identity to a custom mobile ordering application.
+
+Brand Identity & Visuals: I developed a distinctive and authentic brand identity that reflected the restaurant's craft barbecue heritage. This included professional food photography and a complete social media visual kit.
+Custom Mobile App: I designed and developed a custom mobile app for online ordering and a customer loyalty program, making it easy for customers to order and stay engaged.
+Local SEO & Social Media: I implemented a targeted local SEO strategy to ensure the restaurant appeared in top search results for relevant terms. I also managed their social media channels, running campaigns that drove high levels of engagement.
+
+The Impact
+The cohesive brand and digital strategy was a huge success. We increased online orders by 400%, grew the repeat customer base by 50%, and boosted social media engagement by 200% in the first six months.
+4. Technical Skills Page Content
+This new page is for the technical audience.
+(Create a new page at src/pages/skills.js and add the new components.)
+Areas of Technical Expertise
+(Add this as a narrative introduction on the page)
+My experience extends deep into the technical layers that power modern marketing. I specialize in transforming digital platforms into high-performance, secure, and measurable assets.
+Web Performance & Optimization: I take a full-stack approach to speed, from edge caching and CDN configuration with Cloudflare to server-side tuning of Apache and PHP-FPM. I specialize in WordPress performance, leveraging tools like LiteSpeed Cache and WP Rocket, optimizing databases, and refactoring heavy components to achieve superior Core Web Vitals and lightning-fast user experiences.
+Security & Infrastructure Hardening: I build resilient and secure web environments. This includes deploying and managing Cloudflare's WAF, Bot Management, and Rate-Limiting rules, as well as hardening servers with security headers, configuring DNSSEC, and locking down API keys to mitigate risks and stop common attack vectors.
+Analytics & Conversion Tracking Engineering: I architect robust data layers and tracking systems using Google Tag Manager (GTM). My expertise includes cleaning up legacy tags, implementing GA4-native tracking, and writing custom scripts to capture critical engagement and conversion events—from Gravity Forms submissions to e-commerce purchases—ensuring every marketing dollar can be accurately attributed.
+Server Administration & DevOps: I am proficient in managing and monitoring server resources, diagnosing performance bottlenecks with tools like htop and Netdata, and performing critical backend operations like PHP upgrades, debugging fatal errors, and optimizing server configurations to ensure stability and scalability.
+Technology & Software Lists
+(Add this as a new component on the skills page)
+Software & Platform Knowledge
+CDN & Security: Cloudflare (WAF, CDN, Rules, Bot Management), Netdata
+Analytics & Tag Management: Google Tag Manager (GTM), Google Analytics 4 (GA4), Umami
+Advertising & Conversion: Google Ads, PixelYourSite Pro, OptinMonster
+Hosting & Server: Liquid Web, GoDaddy, Apache, PHP-FPM
+WordPress Core: WP-CLI, Custom MU Plugins, WP-Cron, Heartbeat API
+WordPress Plugins:
+Caching: WP Rocket, LiteSpeed Cache, Autoptimize
+CRM: FluentCRM
+Forms: Gravity Forms, WP Forms
+LMS: LearnDash
+Builder: Divi Builder
+Development Tools: Git, VS Code
+Programming, Scripting & Query Languages
+PHP
+JavaScript
+jQuery
+SQL
+CSS
+HTML
+
+Contact Page Content
+A final, compelling call to action.
+
+(Update src/components/sections/contact.js)
+Add this line above the contact form:
+I'm always interested in new challenges and opportunities. Whether you have a project in mind or just want to connect, I'd love to hear from you.

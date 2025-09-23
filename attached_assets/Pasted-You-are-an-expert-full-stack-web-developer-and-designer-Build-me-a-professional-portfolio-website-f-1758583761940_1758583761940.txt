@@ -1,0 +1,104 @@
+You are an expert full-stack web developer and designer. Build me a professional portfolio website for Jacob Darling, hosted at GitHub Repo
+.
+
+Goals & Audience
+
+The site must showcase Jacob’s marketing experience, leadership, and projects to help him get hired as a Marketing Director or senior marketing strategist.
+
+Target audience: employers, hiring managers, executives.
+
+Tone: professional, confident, innovative, modern.
+
+Tech Stack & Design
+
+Framework: Next.js 15 with App Router (React-based, production ready).
+
+Styling: Tailwind CSS + shadcn/ui components for clean, modern design.
+
+Layout: responsive, grid-based, optimized for desktop & mobile.
+
+Animations: subtle Framer Motion transitions (fade/slide on scroll).
+
+Sections should use cards, modals, and hero sections for visual polish.
+
+Pages & Structure
+
+Home (Landing Page)
+
+Hero headline: “Jacob Darling — Marketing Strategist & Creative Builder”
+
+Subtext: emphasize branding, digital marketing, automation, leadership.
+
+CTA buttons: “View Portfolio” / “Get in Touch.”
+
+About
+
+Jacob’s bio (from portfolio prompt).
+
+Timeline of employment roles (Marketing positions).
+
+Career achievements in branding, automation, campaigns.
+
+Photo placeholder / professional headshot area.
+
+Portfolio (Projects)
+
+Two columns:
+
+Employment Projects: Graston Technique dashboards, CRM strategy, automation builds.
+
+Bearcave Marketing Projects: client websites, branding, ads, content marketing.
+
+For each project:
+
+Client name + website link
+
+Services provided
+
+Outcome (1–2 sentences)
+
+Placeholder for logo / screenshot.
+
+Case Studies (Deep Dive)
+
+Dedicated pages for big projects (Graston Technique, Riley Bennett Egloff, PrimaryCare Indy).
+
+Show problem → solution → results.
+
+Capabilities
+
+Bullet list of skills: branding, paid ads, content/email marketing, CRM strategy, web design, UX, automation, analytics.
+
+Icons or graphics for each.
+
+Contact
+
+Form (name, email, message).
+
+LinkedIn / email links.
+
+Tagline: “Let’s build something remarkable.”
+
+Features & Polish
+
+Dark/light mode toggle.
+
+SEO optimized (meta tags, OpenGraph).
+
+Analytics-ready (Google Analytics).
+
+Project filtering (Employment / Bearcave Marketing / Creative).
+
+Reusable components (ProjectCard, SectionHeader).
+
+Deliverables
+
+Fully coded site in repo.
+
+Clean, modular file structure.
+
+Dummy images/logos pulled from placeholder URLs (easy to swap).
+
+Clear README with instructions for deployment (Vercel/Netlify).
+
+⚡ With this prompt, Replit’s AI should generate a production-rea
