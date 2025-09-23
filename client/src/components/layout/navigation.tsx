@@ -203,7 +203,7 @@ export default function Navigation() {
       {/* Mega Menu */}
       {activeMenu && megaMenuContent[activeMenu as keyof typeof megaMenuContent] && (
         <div 
-          className="absolute top-full left-0 right-0 bg-card/95 backdrop-blur-sm border-b border-border shadow-lg"
+          className="absolute top-full left-0 right-0 bg-card backdrop-blur-md border-b border-border shadow-xl z-50"
           onMouseEnter={() => setActiveMenu(activeMenu)}
           onMouseLeave={() => setActiveMenu(null)}
         >
