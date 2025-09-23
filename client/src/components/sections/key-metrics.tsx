@@ -21,26 +21,27 @@ const metrics: Metric[] = [
 
 export default function KeyMetrics() {
   return (
-    <section className="py-16 bg-card">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Results I Deliver</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+    <section className="section-spacing bg-card">
+      <div className="container">
+        <div className="text-center mb-16">
+          <h2 className="mb-6">Results I Deliver</h2>
+          <p className="text-lg max-w-3xl mx-auto">
             Measurable impact through strategic marketing and technical excellence
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {metrics.map((metric, index) => (
             <div
               key={index}
-              className="metric-card bg-card border border-border rounded-lg p-6 text-center"
+              className="metric-card animate-fade-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
               data-testid={`metric-${index}`}
             >
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+              <div className="metric-number">
                 {metric.value}
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="metric-label">
                 {metric.description}
               </p>
             </div>
