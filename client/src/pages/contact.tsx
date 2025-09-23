@@ -92,8 +92,7 @@ export default function Contact() {
             Let's Build Something Remarkable
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Whether you have a project in mind or just want to connect, I'd love to hear from you. 
-            Let's discuss how we can transform your marketing vision into reality.
+            I'm always interested in new challenges and opportunities. Whether you have a project in mind or just want to connect, I'd love to hear from you.
           </p>
         </div>
 
