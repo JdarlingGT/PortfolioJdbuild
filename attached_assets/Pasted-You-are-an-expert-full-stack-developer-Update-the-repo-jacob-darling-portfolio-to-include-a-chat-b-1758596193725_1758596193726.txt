@@ -1,0 +1,425 @@
+You are an expert full-stack developer. Update the repo jacob-darling-portfolio
+ to include a chat-based AI agent inside the site, and integrate it with Jacob Darling’s portfolio content.
+
+Requirements:
+
+AI Agent
+
+Add /api/chat endpoint using OpenAI API (gpt-4o-mini).
+
+Preload system prompt with content from portfolioData.json.
+
+AI should always answer questions about Jacob’s employment roles, Bearcave Marketing projects, and skills.
+
+Build a ChatAgent.tsx React component for frontend.
+
+Dynamic Portfolio Pages
+
+Use portfolioData.json as the single source of truth.
+
+Generate dynamic project pages (/portfolio/[client]).
+
+Each page includes: client name, services, outcome, link to website.
+
+Portfolio index (/portfolio) should link to detail pages.
+
+Integration
+
+Add ChatAgent to the homepage, with headline:
+
+“Chat with my AI Agent to learn more about my work.”
+
+Ensure dark/light mode compatibility.
+
+Use Tailwind + shadcn/ui components.
+
+Deployment-Ready
+
+Store OPENAI_API_KEY in environment variables.
+
+Document usage in README.md.
+
+Ensure site is responsive and polished for employers viewing portfolio.
+
+📂 Code Bundle
+1. Data File — src/data/portfolioData.json
+{
+  "employment": [
+    {
+      "role": "Marketing & Technology Lead",
+      "company": "Graston Technique",
+      "years": "2019–Present",
+      "highlights": [
+        "Led digital rebrand and website redesign.",
+        "Created Training & Events Dashboard integrating CRM, WooCommerce, LearnDash.",
+        "Built CRM tagging strategy and automation workflows.",
+        "Ran content, email, and social campaigns that boosted awareness and engagement."
+      ]
+    },
+    {
+      "role": "Marketing Consultant",
+      "company": "Independent",
+      "years": "2015–2019",
+      "highlights": [
+        "Delivered branding, website builds, and paid ads for clients.",
+        "Launched Bearcave Marketing as a freelance brand."
+      ]
+    }
+  ],
+  "bearcaveProjects": [
+    {
+      "client": "Riley Bennett Egloff",
+      "website": "https://rbelaw.com/",
+      "services": ["Full Rebranding", "Logo Design", "Website", "Content Marketing", "Email Marketing", "Social Media", "Photography", "Graphic Design", "Legal Awards"],
+      "outcome": "Enhanced brand image, boosted recognition in the legal sector."
+    },
+    {
+      "client": "Tuohy Bailey & Moore LLP",
+      "website": "https://www.tbmattorneys.com/",
+      "services": ["Logo Design", "Website Rebrand"],
+      "outcome": "Modernized identity and improved client-facing presence."
+    },
+    {
+      "client": "317 BBQ",
+      "website": "https://317bbq.com/",
+      "services": ["Website Design", "Photography", "Videography"],
+      "outcome": "Built engaging showcase of food/atmosphere, increased traffic."
+    },
+    {
+      "client": "PrimaryCare Indy",
+      "website": "https://primarycareindy.com/",
+      "services": ["Logo Design", "Website", "Photography", "Videography", "Graphic Design", "Paid Ads"],
+      "outcome": "Boosted patient acquisition through branding and ads."
+    },
+    {
+      "client": "UrgentCare Indy",
+      "website": "https://urgentcareindy.com/",
+      "services": ["Logo Design", "Website", "Photography", "Videography", "Graphic Design", "Paid Ads"],
+      "outcome": "Improved accessibility, growing patient visits significantly."
+    },
+    {
+      "client": "Hoosier Boy Barbershop",
+      "website": "https://hoosierboybarbershop.com/",
+      "services": ["Website", "Content Marketing", "Email Marketing", "Social Media"],
+      "outcome": "Boosted bookings and community engagement."
+    },
+    {
+      "client": "Graston Technique",
+      "website": "https://grastontechnique.com/",
+      "services": ["Logo Design", "Website", "Content Marketing", "Email Marketing", "Social Media", "Photography", "Graphic Design", "Awards"],
+      "outcome": "Strengthened brand authority in therapeutic markets."
+    },
+    {
+      "client": "Ayres Mechanical",
+      "website": "https://ayresmechanicalinc.com/",
+      "services": ["Logo Design", "Website", "Content Marketing"],
+      "outcome": "Refreshed identity, helping expand market reach."
+    },
+    {
+      "client": "Russell Painting Company",
+      "website": "https://russellpaintingcompany.com/",
+      "services": ["Logo Design", "Website", "Content Marketing"],
+      "outcome": "Strengthened credibility and inbound leads."
+    }
+  ],
+  "capabilities": [
+    "Branding & Rebranding",
+    "Paid Ads (Google, Meta, LinkedIn)",
+    "Content Marketing & Email Flows",
+    "CRM Strategy & Automation",
+    "Web Design & UX Optimization",
+    "Photography & Videography",
+    "Cross-industry Expertise (Legal, Healthcare, Restaurants, Trades, Education)"
+  ]
+}
+
+2. API Route — src/app/api/chat/route.ts
+import { NextResponse } from "next/server";
+import OpenAI from "openai";
+import portfolioData from "@/data/portfolioData.json";
+
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+export async function POST(req: Request) {
+  try {
+    const { messages } = await req.json();
+
+    const context = `
+You are Jacob Darling’s marketing portfolio AI agent.
+Answer questions concisely and professionally using the following data:
+
+### Employment
+${portfolioData.employment.map(e =>
+  `- ${e.role} at ${e.company} (${e.years}): ${e.highlights.join(" ")}`
+).join("\n")}
+
+### Bearcave Marketing Projects
+${portfolioData.bearcaveProjects.map(p =>
+  `- ${p.client} (${p.website}): ${p.services.join(", ")}. Outcome: ${p.outcome}`
+).join("\n")}
+
+### Capabilities
+${portfolioData.capabilities.join(", ")}
+    `;
+
+    const completion = await client.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        { role: "system", content: context },
+        ...messages,
+      ],
+    });
+
+    return NextResponse.json({
+      reply: completion.choices[0].message?.content || "",
+    });
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json({ error: "Something went wrong." }, { status: 500 });
+  }
+}
+
+3. Chat Component — src/components/ChatAgent.tsx
+"use client";
+
+import { useState } from "react";
+
+export default function ChatAgent() {
+  const [messages, setMessages] = useState<{ role: string; content: string }[]>([]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function sendMessage() {
+    if (!input.trim()) return;
+
+    const newMessages = [...messages, { role: "user", content: input }];
+    setMessages(newMessages);
+    setInput("");
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: newMessages }),
+      });
+
+      const data = await res.json();
+      setMessages([...newMessages, { role: "assistant", content: data.reply }]);
+    } catch (e) {
+      setMessages([...newMessages, { role: "assistant", content: "Error: failed to connect." }]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div className="w-full max-w-lg mx-auto border rounded-2xl shadow-lg p-4 bg-white dark:bg-gray-900">
+      <h2 className="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100">
+        Chat with My AI Agent
+      </h2>
+      <div className="h-64 overflow-y-auto border rounded-lg p-2 bg-gray-50 dark:bg-gray-800">
+        {messages.map((m, i) => (
+          <div key={i} className={`mb-2 ${m.role === "user" ? "text-right" : "text-left"}`}>
+            <span
+              className={`inline-block px-3 py-2 rounded-lg ${
+                m.role === "user"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+              }`}
+            >
+              {m.content}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex mt-2 gap-2">
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Ask me about Jacob’s work..."
+          className="flex-1 border rounded-lg px-3 py-2 dark:bg-gray-800 dark:text-white"
+        />
+        <button
+          onClick={sendMessage}
+          disabled={loading}
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+        >
+          {loading ? "..." : "Send"}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+
+👉 With this prompt + code, Replit will:
+
+Build a dynamic portfolio site powered by portfolioData.json.
+
+Add a chat-based AI agent that employers can interact with.
+
+Auto-generate portfolio project pages.
+
+Do you want me to also add a styled landing section that introduces the AI agent as “Your Interactive Portfolio Assistant” so employers know to click it?
+
+You said:
+yes add
+Graston Gaslighter said:
+
+Perfect ✅ — let’s enhance your homepage with a styled AI Agent landing section so employers instantly see it as an interactive portfolio assistant. This way it feels like a feature, not just a widget hidden in the page.
+
+🔹 Step 1: Update src/app/page.tsx
+
+Here’s a full version with a Hero, a Portfolio teaser, and the AI Agent intro section:
+
+import ChatAgent from "@/components/ChatAgent";
+import Link from "next/link";
+
+export default function Home() {
+  return (
+    <main className="min-h-screen flex flex-col items-center justify-center p-6 bg-gray-50 dark:bg-gray-900">
+      {/* Hero Section */}
+      <section className="max-w-4xl text-center mb-16">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+          Jacob Darling
+        </h1>
+        <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6">
+          Marketing Strategist & Creative Builder — turning campaigns into
+          conversions and ideas into impact.
+        </p>
+        <div className="flex gap-4 justify-center">
+          <Link
+            href="/portfolio"
+            className="px-6 py-3 bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700"
+          >
+            View Portfolio
+          </Link>
+          <Link
+            href="/contact"
+            className="px-6 py-3 border border-blue-600 text-blue-600 rounded-xl hover:bg-blue-100 dark:hover:bg-blue-900"
+          >
+            Get in Touch
+          </Link>
+        </div>
+      </section>
+
+      {/* AI Agent Intro Section */}
+      <section className="w-full max-w-5xl mb-16">
+        <div className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 shadow-lg text-center">
+          <h2 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">
+            Meet Your Interactive Portfolio Assistant
+          </h2>
+          <p className="text-gray-700 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+            Want to learn more about my projects, skills, and career
+            achievements? Chat with my AI agent below — it’s trained on my
+            portfolio and can guide you through my work.
+          </p>
+          <ChatAgent />
+        </div>
+      </section>
+
+      {/* Portfolio Teaser Section */}
+      <section className="w-full max-w-5xl text-center">
+        <h2 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">
+          Featured Work
+        </h2>
+        <p className="text-gray-700 dark:text-gray-300 mb-6">
+          Explore my full portfolio to see detailed case studies across
+          healthcare, legal, food & beverage, and more.
+        </p>
+        <Link
+          href="/portfolio"
+          className="px-6 py-3 bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700"
+        >
+          Explore Portfolio →
+        </Link>
+      </section>
+    </main>
+  );
+}
+
+🔹 Step 2: UX Improvements
+
+The AI Agent section now looks like a feature module, not an afterthought.
+
+It has a gradient background to stand out.
+
+It uses clear instructional text so recruiters/employers know:
+→ It’s trained on your portfolio.
+→ It can answer questions about your work.
+
+👉 Do you want me to also add a floating chat button (bottom-right, like Intercom/Drift style) so the AI assistant is always accessible on any page, not just the homepage?
+
+You said:
+yes add this and then make one promopt that includes everything need to ionstreuct the replit ai to build this into the site
+Graston Gaslighter said:
+
+Perfect ✅ — we’ll add a floating chat button that sits at the bottom-right corner of every page (like Intercom/Drift). Clicking it will open/close your AI Agent in a modal, so recruiters can talk to your portfolio AI assistant anywhere on the site.
+
+Then I’ll give you one master Replit AI prompt that includes everything: the AI agent, JSON-powered portfolio, dynamic project pages, homepage sections, and the floating assistant.
+
+🔹 Step 1: Floating Chat Button + Modal
+src/components/ChatWidget.tsx
+"use client";
+
+import { useState } from "react";
+import ChatAgent from "./ChatAgent";
+import { X } from "lucide-react";
+
+export default function ChatWidget() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      {/* Floating Button */}
+      <button
+        onClick={() => setOpen(true)}
+        className="fixed bottom-6 right-6 bg-blue-600 text-white px-4 py-3 rounded-full shadow-lg hover:bg-blue-700 z-50"
+      >
+        💬 Chat
+      </button>
+
+      {/* Modal */}
+      {open && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl w-full max-w-lg p-4 relative">
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute top-3 right-3 text-gray-500 hover:text-gray-900 dark:hover:text-gray-100"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            <ChatAgent />
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+🔹 Step 2: Inject ChatWidget Globally
+
+Add to src/app/layout.tsx (so it appears on all pages):
+
+import ChatWidget from "@/components/ChatWidget";
+import "./globals.css";
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body className="relative">
+        {children}
+        <ChatWidget />
+      </body>
+    </html>
+  );
+}
+
+🔹 Step 3: Master Prompt for Replit AI
+
+Here’s the one full instruction set you can paste into Replit’s AI builder.

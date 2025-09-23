@@ -1,0 +1,89 @@
+{
+  "employment": [
+    {
+      "role": "Marketing & Technology Lead",
+      "company": "Graston Technique",
+      "years": "2019–Present",
+      "highlights": [
+        "Led digital rebrand and website redesign using WordPress and custom React components.",
+        "Created Training & Events Dashboard integrating CRM, WooCommerce, LearnDash for seamless student experience.",
+        "Built comprehensive CRM tagging strategy and 400+ automation workflows using FluentCRM.",
+        "Ran multi-channel content, email, and social campaigns that boosted brand awareness and student engagement.",
+        "Implemented AI-powered support chatbot reducing customer service workload by 70%.",
+        "Managed technical infrastructure including performance optimization and security hardening."
+      ]
+    },
+    {
+      "role": "Marketing Consultant", 
+      "company": "Independent Contractor",
+      "years": "2015–2019",
+      "highlights": [
+        "Delivered comprehensive branding, website builds, and targeted paid advertising campaigns for diverse clients.",
+        "Launched Bearcave Marketing as a specialized freelance brand focusing on small-to-medium businesses.",
+        "Developed expertise across healthcare, legal, restaurant, and professional services industries.",
+        "Built reputation for combining strategic marketing thinking with hands-on technical implementation."
+      ]
+    }
+  ],
+  "bearcaveProjects": [
+    {
+      "client": "Riley Bennett Egloff",
+      "website": "https://rbelaw.com/",
+      "services": ["Full Rebranding", "Logo Design", "Website Development", "Content Marketing", "Email Marketing", "Social Media Strategy", "Professional Photography", "Graphic Design", "Legal Awards Management"],
+      "outcome": "Enhanced brand image and professional credibility, boosted recognition in the competitive legal sector, increased qualified lead generation through integrated digital strategy."
+    },
+    {
+      "client": "Black Letter Legal",
+      "website": "https://blackletterlegal.com/",
+      "services": ["B2B Lead Generation", "SEO Strategy", "Content Marketing", "LinkedIn Outreach", "CRM System Design"],
+      "outcome": "Achieved 250% increase in qualified B2B leads and 80% improvement in case conversion rate through strategic content and lead nurturing."
+    },
+    {
+      "client": "Gomez Craft Barbecue", 
+      "website": "https://gomezcraftbbq.com/",
+      "services": ["Complete Brand Identity", "Mobile Ordering App", "Local SEO", "Social Media Marketing", "Food Photography"],
+      "outcome": "Successfully launched new restaurant brand with strong local recognition, custom mobile app driving repeat orders, and engaged social media community."
+    },
+    {
+      "client": "PrimaryCare Indy",
+      "website": "https://primarycareindy.com/",
+      "services": ["Logo Design", "Website Development", "Professional Photography", "Video Production", "Graphic Design", "Google Ads Management"],
+      "outcome": "Boosted patient acquisition through professional branding and targeted advertising campaigns, strengthened online presence and credibility."
+    },
+    {
+      "client": "UrgentCare Indy", 
+      "website": "https://urgentcareindy.com/",
+      "services": ["Logo Design", "Website Development", "Photography", "Video Production", "Graphic Design", "Paid Advertising"],
+      "outcome": "Improved accessibility and patient experience, growing patient visits significantly through enhanced digital presence and local advertising."
+    },
+    {
+      "client": "Hoosier Boy Barbershop",
+      "website": "https://hoosierboybarbershop.com/",
+      "services": ["Website Development", "Content Marketing", "Email Marketing", "Social Media Management", "Local SEO"],
+      "outcome": "Boosted appointment bookings and community engagement through consistent content marketing and social media outreach."
+    }
+  ],
+  "capabilities": [
+    "Strategic Marketing Planning & Brand Development",
+    "Paid Advertising (Google Ads, Meta, LinkedIn)", 
+    "Content Marketing & Email Automation Workflows",
+    "CRM Strategy, Implementation & Advanced Automation",
+    "Web Development (React, WordPress, Custom Solutions)",
+    "Analytics & Performance Tracking (GA4, GTM, Custom Dashboards)",
+    "Photography & Video Production for Marketing",
+    "Cross-industry Expertise (Healthcare, Legal, Restaurants, Professional Services)",
+    "Technical SEO & Website Performance Optimization",
+    "AI Integration & Chatbot Development"
+  ],
+  "technologies": [
+    "React & TypeScript for custom web applications",
+    "WordPress development with custom themes and plugins", 
+    "FluentCRM for advanced marketing automation",
+    "Google Analytics 4 & Tag Manager for tracking",
+    "LearnDash for educational platform integration",
+    "WooCommerce for e-commerce solutions",
+    "Cloudflare for performance and security",
+    "MySQL database design and optimization",
+    "API integrations and webhook management"
+  ]
+}

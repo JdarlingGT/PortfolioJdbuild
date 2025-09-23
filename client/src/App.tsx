@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navigation from "@/components/layout/navigation";
 import Footer from "@/components/layout/footer";
+import FloatingChatButton from "@/components/FloatingChatButton";
 import Home from "@/pages/home";
 import About from "@/pages/about";
 import CaseStudies from "@/pages/case-studies";
@@ -32,6 +33,7 @@ function Router() {
         </Switch>
       </main>
       <Footer />
+      <FloatingChatButton />
     </div>
   );
 }
