@@ -1,121 +1,12 @@
-import { type CaseStudy } from "@/lib/types";
 import { useSEO, createBreadcrumbSchema } from "@/hooks/use-seo";
-import { Link } from "wouter";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { useState, useMemo } from "react";
-import blackLetterLogoColor from "@assets/black-letter-logo-color.png";
-import blackLetterLogoGrayscale from "@assets/black-letter-logo-grayscale.png";
+import CaseStudyCard from "@/components/CaseStudyCard";
+import caseStudiesData from "@/data/caseStudies.json";
 
 type FilterCategory = "All" | "Healthcare" | "B2B" | "Consumer";
 
-// Extended case study interface with filter categories
-interface ExtendedCaseStudy extends CaseStudy {
-  filterCategories: FilterCategory[];
-}
-
-const caseStudies: ExtendedCaseStudy[] = [
-  {
-    id: "graston-technique",
-    title: "Graston Technique®",
-    subtitle: "Full-Stack Marketing & Systems Transformation",
-    description: "Led complete marketing and technology transformation for national healthcare training leader, including custom React dashboard, AI-powered support system, and 400+ CRM automation workflows.",
-    technologies: ["WordPress", "React", "FluentCRM", "LearnDash"],
-    imageGradient: "bg-gradient-to-br from-primary/10 to-primary/20",
-    textColor: "text-primary",
-    category: "Employment" as const,
-    filterCategories: ["Healthcare", "B2B"],
-    challenge: "Graston Technique needed to modernize their training platform and support systems to scale their operations efficiently while maintaining quality education standards for healthcare professionals.",
-    solution: [
-      "Designed and developed custom React-based training dashboard with real-time progress tracking",
-      "Implemented AI-powered support chatbot to reduce manual customer service workload by 70%",
-      "Built 400+ automated CRM workflows for lead nurturing and student engagement",
-      "Created comprehensive LMS integration with FluentCRM for seamless data flow"
-    ],
-    impact: "Transformed the organization's operational efficiency and student experience through strategic technology implementation.",
-    results: [
-      "400+ CRM workflows built",
-      "AI-powered support reduced tickets by 70%",
-      "Checkout innovation boosted conversions 40%",
-      "Instructor dashboard enabled real-time training data"
-    ]
-  },
-  {
-    id: "pike-medical-consultants",
-    title: "Pike Medical Consultants",
-    subtitle: "Integrated Digital Strategy & Campaign Management",
-    description: "Developed comprehensive digital presence for medical practice group, including PrimaryCare Indy and UrgentCare Indy websites, Google Ads campaigns, seasonal email marketing, and complete branding package.",
-    technologies: ["WordPress", "Google Ads", "Email Marketing", "SEO", "Branding"],
-    imageGradient: "bg-gradient-to-br from-blue-100 to-blue-200",
-    textColor: "text-blue-600",
-    category: "Bearcave Marketing" as const,
-    filterCategories: ["Healthcare", "B2B"],
-    challenge: "Pike Medical Consultants needed to establish distinct digital presences for their PrimaryCare and UrgentCare divisions while maintaining brand consistency and driving patient acquisition across multiple service areas.",
-    solution: [
-      "Built responsive WordPress websites for PrimaryCare Indy and UrgentCare Indy with patient-focused UX",
-      "Developed and managed Google Ads campaigns targeting local healthcare searches",
-      "Created seasonal email marketing campaigns for patient retention and health awareness",
-      "Designed comprehensive brand identity including logos, banners, and marketing materials"
-    ],
-    impact: "Established strong digital foundation for medical practice growth with cohesive branding and effective patient acquisition channels.",
-    results: [
-      "Built/refined websites (PrimaryCare Indy, UrgentCare Indy)",
-      "Google Ads campaigns driving patient traffic",
-      "Seasonal email campaigns (flu shots, allergy season)",
-      "Logo, banners, signage for brand consistency"
-    ]
-  },
-  {
-    id: "black-letter-legal",
-    title: "Black Letter Legal",
-    subtitle: "Premium Logo Design & Brand Identity",
-    description: "Crafted sophisticated brand identity for legal research firm, featuring custom typography and distinctive logo design that balances professional authority with modern elegance.",
-    technologies: ["Logo Design", "Typography", "Brand Identity", "Color Theory"],
-    imageGradient: "bg-gradient-to-br from-orange-100 to-orange-200",
-    textColor: "text-orange-600",
-    category: "Bearcave Marketing" as const,
-    filterCategories: ["B2B"],
-    challenge: "Black Letter Legal needed a distinctive brand identity that would establish credibility in the competitive legal market while standing out from traditional, conservative law firm aesthetics.",
-    solution: [
-      "Designed elegant monogram featuring stylized 'B' with flowing, calligraphic elements",
-      "Developed sophisticated color palette with professional grayscale and vibrant orange accent",
-      "Created custom typography treatment balancing traditional serif elegance with modern readability",
-      "Engineered scalable logo system working across digital and print applications"
-    ],
-    impact: "Delivered a premium brand identity that positions Black Letter Legal as both authoritative and approachable, setting them apart in the legal research marketplace.",
-    results: [
-      "Distinctive monogram design establishing immediate brand recognition",
-      "Versatile color system supporting both conservative and dynamic brand applications",
-      "Professional typography enhancing credibility and trust",
-      "Scalable brand system ready for digital and print implementation"
-    ]
-  },
-  {
-    id: "gomez-craft-barbecue",
-    title: "Gomez Craft Barbecue",
-    subtitle: "Restaurant Brand Launch & Digital Presence",
-    description: "Built complete digital footprint from brand identity to custom mobile ordering application for new restaurant in competitive local market.",
-    technologies: ["Branding", "Mobile App", "Local SEO", "Social Media"],
-    imageGradient: "bg-gradient-to-br from-orange-100 to-orange-200",
-    textColor: "text-orange-600",
-    category: "Bearcave Marketing" as const,
-    filterCategories: ["Consumer"],
-    challenge: "A new barbecue restaurant needed to build brand recognition and compete against established local competitors while creating an efficient ordering system for modern customers.",
-    solution: [
-      "Created distinctive brand identity that captured authentic barbecue culture and local flavor",
-      "Developed custom mobile ordering application with integrated payment processing",
-      "Implemented local SEO strategy targeting neighborhood and barbecue-specific searches",
-      "Launched social media presence showcasing food quality and restaurant personality"
-    ],
-    impact: "Successfully launched a new restaurant brand with strong local recognition and efficient operations from day one.",
-    results: [
-      "Successful brand launch in competitive local market",
-      "Custom mobile app driving repeat customer orders",
-      "Strong local search presence for barbecue-related queries",
-      "Engaged social media community supporting word-of-mouth marketing"
-    ]
-  }
-];
+// Import the JSON data and transform it for our needs
+const caseStudies = caseStudiesData;
 
 export default function CaseStudies() {
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("All");
@@ -185,155 +76,33 @@ export default function CaseStudies() {
         </div>
       </section>
 
-      {/* Case Studies */}
-      <div className="transition-all duration-500 ease-out">
-        {filteredCaseStudies.map((caseStudy, index) => {
-          const isEven = index % 2 === 0;
-          return (
-            <section 
-              key={caseStudy.id} 
-              className={`
-                section-spacing border-t border-border
-                animate-fade-in opacity-0
-                transform transition-all duration-700 ease-out
-              `}
-              style={{ 
-                animationDelay: `${index * 0.2}s`,
-                animationFillMode: 'forwards'
-              }}
-              data-testid={`case-study-${caseStudy.id}`}
-            >
-              <div className="container">
-                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${!isEven ? 'lg:grid-flow-col-dense' : ''}`}>
-                
-                  {/* Image Section */}
-                  <div className={`${!isEven ? 'lg:col-start-2' : ''}`}>
-                    {caseStudy.id === 'black-letter-legal' ? (
-                      <div className="aspect-video rounded-lg bg-gradient-to-br from-slate-900 to-slate-800 p-8 shadow-lg">
-                        <div className="h-full flex items-center justify-center gap-8">
-                          <div className="flex-1 flex items-center justify-center">
-                            <img 
-                              src={blackLetterLogoGrayscale} 
-                              alt="Black Letter Legal - Grayscale Logo" 
-                              className="max-h-24 w-auto object-contain"
-                            />
-                          </div>
-                          <div className="w-px h-16 bg-gray-600"></div>
-                          <div className="flex-1 flex items-center justify-center">
-                            <img 
-                              src={blackLetterLogoColor} 
-                              alt="Black Letter Legal - Color Logo" 
-                              className="max-h-24 w-auto object-contain"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <div 
-                        className={`aspect-video rounded-lg ${caseStudy.imageGradient} flex items-center justify-center shadow-lg`}
-                      >
-                        <div className={`${caseStudy.textColor} font-bold text-2xl text-center px-8`}>
-                          {caseStudy.title}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Content Section */}
-                  <div className={`${!isEven ? 'lg:col-start-1' : ''}`}>
-                    <div className="space-y-8">
-                      {/* Project Header */}
-                      <div>
-                        <h2 className="mb-4">{caseStudy.title}</h2>
-                        <p className="text-lg text-primary font-semibold mb-4">
-                          {caseStudy.subtitle}
-                        </p>
-                        <p className="text-lg leading-relaxed">
-                          {caseStudy.description}
-                        </p>
-                      </div>
-
-                      {/* Technologies */}
-                      <div>
-                        <div className="flex flex-wrap gap-3">
-                        {caseStudy.technologies.map((tech, techIndex) => (
-                          <span
-                            key={techIndex}
-                            className="bg-accent text-accent-foreground px-3 py-1 rounded-md text-sm font-medium"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Challenge */}
-                    {caseStudy.challenge && (
-                      <div>
-                        <h3 className="mb-3">The Challenge</h3>
-                        <p className="leading-relaxed">
-                          {caseStudy.challenge}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Solution */}
-                    {caseStudy.solution && (
-                      <div>
-                        <h3 className="mb-3">My Solution</h3>
-                        <ul className="space-y-2">
-                          {caseStudy.solution.map((item, itemIndex) => (
-                            <li key={itemIndex} className="flex items-start gap-3">
-                              <div className="w-2 h-2 bg-secondary rounded-full mt-2 flex-shrink-0"></div>
-                              <span className="leading-relaxed">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {/* Impact */}
-                    {caseStudy.impact && (
-                      <div>
-                        <h3 className="mb-3">The Impact</h3>
-                        <p className="leading-relaxed mb-4">
-                          {caseStudy.impact}
-                        </p>
-                        {caseStudy.results && (
-                          <ul className="space-y-2">
-                            {caseStudy.results.map((result, resultIndex) => (
-                              <li key={resultIndex} className="flex items-start gap-3">
-                                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                                <span className="leading-relaxed font-medium text-foreground">{result}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    )}
-
-                    {/* View Details Button - Only for main case studies */}
-                    {(caseStudy.id === 'graston-technique' || caseStudy.id === 'pike-medical-consultants') && (
-                      <div className="pt-4">
-                        <Link href={`/case-studies/${caseStudy.id}`}>
-                          <Button 
-                            className="w-full sm:w-auto"
-                            data-testid={`button-view-details-${caseStudy.id}`}
-                          >
-                            View Full Case Study
-                            <ArrowRight className="w-4 h-4 ml-2" />
-                          </Button>
-                        </Link>
-                      </div>
-                    )}
-                  </div>
-                </div>
+      {/* Case Studies Grid */}
+      <section className="section-spacing">
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredCaseStudies.map((caseStudy, index) => (
+              <div
+                key={caseStudy.slug}
+                className="animate-fade-in opacity-0"
+                style={{ 
+                  animationDelay: `${index * 0.1}s`,
+                  animationFillMode: 'forwards'
+                }}
+                data-testid={`case-study-${caseStudy.slug}`}
+              >
+                <CaseStudyCard
+                  slug={caseStudy.slug}
+                  title={caseStudy.title}
+                  subtitle={caseStudy.subtitle}
+                  logo={caseStudy.logo}
+                  bullets={caseStudy.bullets}
+                  category={caseStudy.category}
+                />
               </div>
-            </div>
-          </section>
-          );
-        })}
-      </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Call to Action */}
       <section className="section-spacing bg-card border-t border-border">

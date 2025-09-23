@@ -70,7 +70,7 @@
     "logo": "@assets/case-studies/primarycare-indy-logo.png",
     "cover": "@assets/case-studies/primarycare-indy-logo.png",
     "category": "Healthcare",
-    "filterCategories": ["Healthcare", "B2B"],
+    "filterCategories": ["Healthcare"],
     "bullets": [
       "Patient-focused website design and user experience",
       "Online appointment scheduling system integration",
@@ -102,7 +102,7 @@
     "logo": "@assets/case-studies/urgentcare-indy-logo.png",
     "cover": "@assets/case-studies/urgentcare-indy-logo.png",
     "category": "Healthcare",
-    "filterCategories": ["Healthcare", "B2B"],
+    "filterCategories": ["Healthcare"],
     "bullets": [
       "Real-time wait time display system",
       "Online check-in to reduce waiting",
@@ -230,7 +230,7 @@
     "logo": "/placeholder-logo.png",
     "cover": "/placeholder-cover.jpg",
     "category": "Healthcare",
-    "filterCategories": ["Healthcare", "B2B"],
+    "filterCategories": ["Healthcare"],
     "bullets": [
       "Custom React training dashboard development",
       "AI-powered support system reducing tickets 70%",
@@ -262,7 +262,7 @@
     "logo": "/placeholder-logo.png",
     "cover": "/placeholder-cover.jpg",
     "category": "Healthcare",
-    "filterCategories": ["Healthcare", "B2B"],
+    "filterCategories": ["Healthcare"],
     "bullets": [
       "Built PrimaryCare Indy and UrgentCare Indy websites",
       "Managed Google Ads campaigns for patient acquisition",
