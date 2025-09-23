@@ -23,7 +23,11 @@ import {
   Rocket,
   TrendingUp,
   Shield,
-  Navigation as NavigationIcon
+  Navigation as NavigationIcon,
+  Palette,
+  Image,
+  Layout,
+  Type
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme-provider";
@@ -38,6 +42,7 @@ export default function Navigation() {
     { name: "Home", href: "/", hasMenu: false },
     { name: "About", href: "/about", hasMenu: true },
     { name: "Case Studies", href: "/case-studies", hasMenu: true },
+    { name: "Creative Design", href: "/creative-design", hasMenu: true },
     { name: "Deep Dives", href: "/deep-dives", hasMenu: true },
     { name: "Skills", href: "/skills", hasMenu: true },
     { name: "Process", href: "/process", hasMenu: true },
@@ -64,8 +69,21 @@ export default function Navigation() {
           title: "Featured Projects",
           items: [
             { name: "Graston Technique", description: "Healthcare training transformation", icon: Building2 },
-            { name: "Black Letter Legal", description: "B2B lead generation system", icon: Users },
+            { name: "Black Letter Legal", description: "Logo design & brand identity", icon: Users },
             { name: "Gomez Craft Barbecue", description: "Restaurant brand & digital presence", icon: Target }
+          ]
+        }
+      ]
+    },
+    "Creative Design": {
+      sections: [
+        {
+          title: "Design Categories",
+          items: [
+            { name: "Logo Design", description: "Custom logos & brand marks", icon: Palette },
+            { name: "Brand Identity", description: "Complete visual systems", icon: Shield },
+            { name: "Print Materials", description: "Business cards & collateral", icon: Layout },
+            { name: "Digital Graphics", description: "Web & social media assets", icon: Image }
           ]
         }
       ]
@@ -242,6 +260,7 @@ export default function Navigation() {
                           key={itemIndex}
                           href={activeMenu === "About" ? "/about" : 
                                 activeMenu === "Case Studies" ? "/case-studies" : 
+                                activeMenu === "Creative Design" ? "/creative-design" : 
                                 activeMenu === "Deep Dives" ? 
                                   (item.name === "The War Room" ? "/deep-dives/war-room" :
                                    item.name === "The Launchpad" ? "/deep-dives/launchpad" :
