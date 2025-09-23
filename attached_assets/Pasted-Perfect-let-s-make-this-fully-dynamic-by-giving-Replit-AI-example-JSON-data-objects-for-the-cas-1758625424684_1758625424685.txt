@@ -1,0 +1,276 @@
+Perfect 🔥 — let’s make this fully dynamic by giving Replit AI example JSON data objects for the case studies. That way, the CaseStudyDetail component can just consume props from JSON (or GraphQL/MDX later), and new case studies can be added without changing code.
+
+Here’s the extended master prompt with JSON objects included:
+
+
+---
+
+Replit AI Prompt: Full Portfolio Build with Expanded Case Studies + Wireframes + React Skeletons + JSON Data
+
+Act as an expert React (Vite) + Express developer. Extend my portfolio site with new contractor case studies, interactive features, and styling enhancements. Keep animations subtle, professional, and consistent with the design system.
+
+
+---
+
+1. Case Studies (Expanded)
+
+Create new markdown case studies for:
+
+Tuohy Bailey & Moore LLP
+
+317 BBQ
+
+PrimaryCare Indy
+
+UrgentCare Indy
+
+Hoosier Boy Barbershop
+
+Ayres Mechanical, Inc.
+
+Russell Painting Company
+
+
+
+Each follows the educational structure:
+Challenge → Approach & Reasoning → Execution → Results → How It’s Measured → Takeaway
+
+
+---
+
+2. Case Studies Page Layout (Wireframe Spec)
+
+Responsive card grid:
+
+Desktop → 3 columns
+
+Tablet → 2 columns
+
+Mobile → 1 column
+
+
+Card elements: Logo, Title, Subtitle, 3–4 teaser bullets, CTA button.
+
+
+
+---
+
+3. Case Study Detail Page Wireframe
+
+Sections:
+
+Hero Banner (cover, title, subtitle)
+
+Challenge
+
+Approach & Reasoning
+
+Execution (list/steps)
+
+Results (highlight box)
+
+How It’s Measured (bullets)
+
+Takeaway (quote style)
+
+Optional image carousel
+
+
+
+---
+
+4. React Component Skeletons
+
+Case Study Card (CaseStudyCard.jsx)
+
+import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+export default function CaseStudyCard({ logo, title, subtitle, bullets, link }) {
+  return (
+    <Card className="hover:scale-105 transition-transform shadow-lg p-4 flex flex-col justify-between">
+      <CardHeader className="flex flex-col items-center">
+        <img src={logo} alt={`${title} logo`} className="h-16 object-contain mb-2" />
+        <h3 className="text-xl font-bold text-center">{title}</h3>
+        <p className="text-sm text-gray-600 text-center">{subtitle}</p>
+      </CardHeader>
+      <CardContent>
+        <ul className="list-disc list-inside text-gray-700 space-y-1 text-sm">
+          {bullets.map((point, i) => (
+            <li key={i}>{point}</li>
+          ))}
+        </ul>
+      </CardContent>
+      <CardFooter className="flex justify-center mt-4">
+        <Button asChild>
+          <a href={link}>View Case Study</a>
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+}
+
+
+---
+
+Case Study Detail Page (CaseStudyDetail.jsx)
+
+import { Card } from "@/components/ui/card";
+
+export default function CaseStudyDetail({ caseStudy }) {
+  const { cover, title, subtitle, challenge, reasoning, execution, results, measurement, takeaway } = caseStudy;
+
+  return (
+    <div className="max-w-4xl mx-auto px-4 py-12 space-y-12">
+      {/* Hero Banner */}
+      <div className="relative h-64 bg-gray-100 flex items-center justify-center rounded-xl shadow">
+        <img src={cover} alt={title} className="absolute inset-0 w-full h-full object-cover rounded-xl opacity-30" />
+        <div className="relative text-center z-10">
+          <h1 className="text-3xl font-bold">{title}</h1>
+          <p className="text-lg text-gray-700">{subtitle}</p>
+        </div>
+      </div>
+
+      {/* Challenge */}
+      <section>
+        <h2 className="text-2xl font-bold text-[#eb1a4e] mb-2">The Challenge</h2>
+        <p className="text-gray-700 leading-relaxed">{challenge}</p>
+      </section>
+
+      {/* Approach & Reasoning */}
+      <section>
+        <h2 className="text-2xl font-bold text-[#eb1a4e] mb-2">My Approach & Reasoning</h2>
+        <p className="text-gray-700 leading-relaxed">{reasoning}</p>
+      </section>
+
+      {/* Execution */}
+      <section>
+        <h2 className="text-2xl font-bold text-[#eb1a4e] mb-2">Execution</h2>
+        <ul className="list-disc list-inside space-y-1 text-gray-700">
+          {execution.map((step, i) => (
+            <li key={i}>{step}</li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Results */}
+      <section>
+        <h2 className="text-2xl font-bold text-[#eb1a4e] mb-2">Results</h2>
+        <Card className="bg-gray-50 p-4 shadow-inner text-gray-700">
+          <p>{results}</p>
+        </Card>
+      </section>
+
+      {/* Measurement */}
+      <section>
+        <h2 className="text-2xl font-bold text-[#eb1a4e] mb-2">How It’s Measured</h2>
+        <ul className="list-disc list-inside space-y-1 text-gray-700">
+          {measurement.map((metric, i) => (
+            <li key={i}>{metric}</li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Takeaway */}
+      <section>
+        <h2 className="text-2xl font-bold text-[#eb1a4e] mb-2">Takeaway</h2>
+        <blockquote className="italic border-l-4 border-[#eb1a4e] pl-4 text-gray-800">{takeaway}</blockquote>
+      </section>
+    </div>
+  );
+}
+
+
+---
+
+5. Example JSON Data Objects (caseStudies.json)
+
+[
+  {
+    "slug": "tuohy-bailey-moore",
+    "title": "Tuohy Bailey & Moore LLP",
+    "subtitle": "Rebrand & Website Revitalization",
+    "cover": "/assets/case-studies/tuohy-bailey-moore-logo.png",
+    "challenge": "Outdated branding undermined credibility in a trust-driven legal market.",
+    "reasoning": "Applied trust signaling theory — design aesthetics directly influence perceived professionalism.",
+    "execution": [
+      "Full rebrand (logo, color palette, typography)",
+      "Website redesign for clarity and responsiveness",
+      "Improved visual trust cues (photography, layout)"
+    ],
+    "results": "Stronger client confidence, more inquiries, and improved competitive positioning.",
+    "measurement": ["Bounce rate reduction", "Contact form submissions"],
+    "takeaway": "In professional services, branding is credibility."
+  },
+  {
+    "slug": "317-bbq",
+    "title": "317 BBQ",
+    "subtitle": "Visual Storytelling & Experience Design",
+    "cover": "/assets/case-studies/317-bbq-logo.png",
+    "challenge": "Great food but weak digital presence; visuals weren’t selling the experience.",
+    "reasoning": "Applied appetite appeal theory — people eat with their eyes first.",
+    "execution": [
+      "Immersive photography & videography",
+      "Website redesign with menu-first UX",
+      "Content structured for catering and online orders"
+    ],
+    "results": "Increased engagement, more online orders, and stronger restaurant identity.",
+    "measurement": ["Time on site", "Menu page visits", "Order conversions"],
+    "takeaway": "For restaurants, visual storytelling = sales."
+  }
+]
+
+(…repeat JSON entries for PrimaryCare Indy, UrgentCare Indy, Hoosier Boy, Ayres, Russell)
+
+
+---
+
+6. Styling & Functions
+
+Responsive grid layout (cards).
+
+Hero banner with overlay.
+
+Results styled as a highlight box.
+
+Takeaway styled as pull-quote.
+
+Cards hover with lift/scale.
+
+
+
+---
+
+7. Logo Assets
+
+Pull logos directly from client sites if possible.
+
+If unavailable, insert placeholders with proper filenames.
+
+Store in /assets/case-studies/<slug>-logo.png.
+
+
+
+---
+
+Implement all of the above now.
+
+
+---
+
+⚡ With this, your portfolio case studies are:
+
+Markdown-driven ✅
+
+React skeletons provided ✅
+
+JSON-powered for easy scalability ✅
+
+Wireframes & styling guidelines locked ✅
+
+
+
+---
+
+👉 Do you also want me to prep a GraphQL/MDX query example (so if you move to Gatsby or Next later, you can source these case studies dynamically)?
+
