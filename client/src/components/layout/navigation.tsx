@@ -17,7 +17,13 @@ import {
   Lightbulb,
   Settings,
   BarChart3,
-  Monitor
+  Monitor,
+  BookOpen,
+  Server,
+  Rocket,
+  TrendingUp,
+  Shield,
+  Navigation as NavigationIcon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme-provider";
@@ -32,6 +38,7 @@ export default function Navigation() {
     { name: "Home", href: "/", hasMenu: false },
     { name: "About", href: "/about", hasMenu: true },
     { name: "Case Studies", href: "/case-studies", hasMenu: true },
+    { name: "Deep Dives", href: "/deep-dives", hasMenu: true },
     { name: "Skills", href: "/skills", hasMenu: true },
     { name: "Process", href: "/process", hasMenu: true },
     { name: "Demos", href: "/demos", hasMenu: true },
@@ -104,6 +111,19 @@ export default function Navigation() {
             { name: "Automation Workflow", description: "Live marketing automation demo", icon: Play },
             { name: "Analytics Dashboard", description: "Real-time data visualization", icon: Monitor },
             { name: "CRM Interface", description: "Custom contact management", icon: Users }
+          ]
+        }
+      ]
+    },
+    "Deep Dives": {
+      sections: [
+        {
+          title: "Project Stories",
+          items: [
+            { name: "The War Room", description: "Full-stack performance overhaul", icon: Server },
+            { name: "The Launchpad", description: "Automated membership funnel", icon: Rocket },
+            { name: "The Signal", description: "Analytics & attribution overhaul", icon: TrendingUp },
+            { name: "All Stories", description: "View complete collection", icon: BookOpen }
           ]
         }
       ]
@@ -222,6 +242,11 @@ export default function Navigation() {
                           key={itemIndex}
                           href={activeMenu === "About" ? "/about" : 
                                 activeMenu === "Case Studies" ? "/case-studies" : 
+                                activeMenu === "Deep Dives" ? 
+                                  (item.name === "The War Room" ? "/deep-dives/war-room" :
+                                   item.name === "The Launchpad" ? "/deep-dives/launchpad" :
+                                   item.name === "The Signal" ? "/deep-dives/signal" :
+                                   item.name === "All Stories" ? "/deep-dives" : "/deep-dives") :
                                 activeMenu === "Skills" ? "/skills" : 
                                 activeMenu === "Process" ? "/process" : 
                                 activeMenu === "Demos" ? "/demos" : 

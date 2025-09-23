@@ -14,6 +14,10 @@ import Skills from "@/pages/skills";
 import Process from "@/pages/process";
 import Demos from "@/pages/demos";
 import Contact from "@/pages/contact";
+import DeepDives from "@/pages/deep-dives";
+import WarRoomDeepDive from "@/pages/deep-dives/war-room";
+import LaunchpadDeepDive from "@/pages/deep-dives/launchpad";
+import SignalDeepDive from "@/pages/deep-dives/signal";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -29,6 +33,10 @@ function Router() {
           <Route path="/process" component={Process} />
           <Route path="/demos" component={Demos} />
           <Route path="/contact" component={Contact} />
+          <Route path="/deep-dives" component={DeepDives} />
+          <Route path="/deep-dives/war-room" component={WarRoomDeepDive} />
+          <Route path="/deep-dives/launchpad" component={LaunchpadDeepDive} />
+          <Route path="/deep-dives/signal" component={SignalDeepDive} />
           <Route component={NotFound} />
         </Switch>
       </main>
