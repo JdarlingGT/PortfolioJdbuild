@@ -114,82 +114,102 @@ export default function Skills() {
   });
 
   return (
-    <section className="py-16 bg-background pt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Technical Capabilities
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+    <div className="pt-24">
+      {/* Header Section */}
+      <section className="section-spacing bg-background">
+        <div className="container text-center">
+          <h1 className="mb-6">Skills & Expertise</h1>
+          <p className="text-lg max-w-3xl mx-auto">
             Deep expertise spanning marketing strategy, web development, automation systems, and data analytics
           </p>
         </div>
+      </section>
 
-        {/* Core Capabilities */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-foreground mb-8 text-center">Core Capabilities</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      {/* Core Marketing Skills */}
+      <section className="section-spacing bg-card border-t border-border">
+        <div className="container">
+          <h2 className="mb-12 text-center">Core Marketing Skills</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {coreSkills.map((skill, index) => {
               const IconComponent = getIcon(skill.icon);
               return (
                 <div
                   key={index}
-                  className="skill-item bg-card border border-border rounded-lg p-4 text-center hover:border-primary transition-colors"
+                  className="bg-background border border-border rounded-lg p-6 text-center hover:border-primary hover:shadow-md transition-all duration-200"
                   data-testid={`core-skill-${index}`}
                 >
-                  <IconComponent className="w-8 h-8 text-primary mx-auto mb-3" />
-                  <h3 className="font-semibold text-foreground text-sm">{skill.name}</h3>
+                  <IconComponent className="w-10 h-10 text-primary mx-auto mb-4" />
+                  <h3 className="font-semibold">{skill.name}</h3>
                 </div>
               );
             })}
           </div>
         </div>
+      </section>
 
-        {/* Technical Specializations */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {technicalAreas.map((area, index) => {
-            const IconComponent = getIcon(area.icon);
-            return (
-              <div
-                key={index}
-                className="bg-card border border-border rounded-lg p-6"
-                data-testid={`tech-area-${index}`}
-              >
-                <div className="flex items-center mb-4">
-                  <IconComponent className="w-6 h-6 text-primary mr-2" />
-                  <h3 className="font-bold text-foreground">{area.title}</h3>
+      {/* Technical Spotlights */}
+      <section className="section-spacing bg-background border-t border-border">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="mb-4">Technical Spotlights</h2>
+            <p className="text-lg max-w-2xl mx-auto">
+              Specialized technical capabilities that drive measurable results
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {technicalAreas.map((area, index) => {
+              const IconComponent = getIcon(area.icon);
+              return (
+                <div
+                  key={index}
+                  className="bg-card border border-border rounded-lg p-8 hover:border-primary hover:shadow-lg transition-all duration-200"
+                  data-testid={`tech-area-${index}`}
+                >
+                  <div className="flex items-center mb-6">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                      <IconComponent className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold">{area.title}</h3>
+                  </div>
+                  <ul className="space-y-3">
+                    {area.skills.map((skill, skillIndex) => (
+                      <li key={skillIndex} className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-secondary rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="leading-relaxed">{skill}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="text-sm text-muted-foreground space-y-2">
-                  {area.skills.map((skill, skillIndex) => (
-                    <li key={skillIndex}>• {skill}</li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
+      </section>
 
-        {/* Technology Stack */}
-        <div>
-          <h2 className="text-2xl font-bold text-foreground mb-8 text-center">Technology Stack</h2>
+      {/* Technology Stack */}
+      <section className="section-spacing bg-card border-t border-border">
+        <div className="container">
+          <h2 className="mb-12 text-center">Technology Stack</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {technologyStacks.map((stack, index) => {
               const IconComponent = getIcon(stack.icon);
               return (
                 <div
                   key={index}
-                  className="bg-card border border-border rounded-lg p-6"
+                  className="bg-background border border-border rounded-lg p-8"
                   data-testid={`tech-stack-${index}`}
                 >
-                  <h3 className="font-bold text-foreground mb-4 flex items-center">
-                    <IconComponent className="w-5 h-5 text-primary mr-2" />
-                    {stack.category}
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex items-center mb-6">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                      <IconComponent className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold">{stack.category}</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-3">
                     {stack.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded"
+                        className="bg-accent text-accent-foreground px-3 py-2 rounded-md text-sm font-medium"
                       >
                         {tech}
                       </span>
@@ -200,7 +220,26 @@ export default function Skills() {
             })}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Call to Action */}
+      <section className="section-spacing bg-background border-t border-border">
+        <div className="container text-center">
+          <h2 className="mb-6">Ready to Put These Skills to Work?</h2>
+          <p className="text-lg max-w-2xl mx-auto mb-8">
+            Let's discuss how my unique combination of marketing strategy and technical expertise 
+            can help achieve your business goals.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact" className="btn-primary" data-testid="link-contact-cta">
+              Get Started
+            </a>
+            <a href="/case-studies" className="btn-secondary" data-testid="link-case-studies-cta">
+              View My Work
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
