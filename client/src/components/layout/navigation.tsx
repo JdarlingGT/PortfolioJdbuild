@@ -15,6 +15,7 @@ export default function Navigation() {
     { name: "Case Studies", href: "/case-studies" },
     { name: "Skills", href: "/skills" },
     { name: "Process", href: "/process" },
+    { name: "Demos", href: "/demos" },
     { name: "Contact", href: "/contact" },
   ];
 

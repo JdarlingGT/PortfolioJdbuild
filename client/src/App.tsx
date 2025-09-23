@@ -11,6 +11,7 @@ import About from "@/pages/about";
 import CaseStudies from "@/pages/case-studies";
 import Skills from "@/pages/skills";
 import Process from "@/pages/process";
+import Demos from "@/pages/demos";
 import Contact from "@/pages/contact";
 import NotFound from "@/pages/not-found";
 
@@ -25,6 +26,7 @@ function Router() {
           <Route path="/case-studies" component={CaseStudies} />
           <Route path="/skills" component={Skills} />
           <Route path="/process" component={Process} />
+          <Route path="/demos" component={Demos} />
           <Route path="/contact" component={Contact} />
           <Route component={NotFound} />
         </Switch>
