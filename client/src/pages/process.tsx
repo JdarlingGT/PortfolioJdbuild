@@ -1,6 +1,5 @@
 import { Search, FileText, Wrench, TrendingUp, CheckCircle } from "lucide-react";
-import { Link } from "wouter";
-import { useEffect } from "react";
+import { useSEO, createBreadcrumbSchema } from "@/hooks/use-seo";
 
 interface ProcessPhase {
   number: string;
@@ -72,111 +71,130 @@ const processPhases: ProcessPhase[] = [
 ];
 
 export default function Process() {
-  useEffect(() => {
-    document.title = "My Process - Jacob Darling | Marketing Strategist & Systems Architect";
-  }, []);
+  useSEO({
+    title: "My Process - Jacob Darling | Marketing Strategy & Implementation",
+    description: "Discover my proven four-phase approach to building marketing engines: from discovery and audit to optimization and growth with measurable results.",
+    keywords: "marketing process, strategy development, systems architecture, discovery audit, optimization growth",
+    canonical: "https://jacobdarling.com/process",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Marketing Process & Methodology",
+      "description": "Four-phase approach to building marketing engines with measurable results",
+      "breadcrumb": createBreadcrumbSchema([
+        { name: "Home", url: "https://jacobdarling.com" },
+        { name: "Process", url: "https://jacobdarling.com/process" }
+      ])
+    }
+  });
 
   return (
-    <section className="py-16 bg-background pt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            From Insight to Impact: My Approach to Building Marketing Engines
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Every successful project is built on a foundation of a clear and collaborative process. 
-            Here is the four-phase approach I use to turn ambitious marketing goals into measurable results.
+    <div className="pt-24">
+      {/* Header Section */}
+      <section className="section-spacing bg-background">
+        <div className="container text-center">
+          <h1 className="mb-6">My Process</h1>
+          <p className="text-lg max-w-3xl mx-auto">
+            A proven four-phase approach that transforms ambitious marketing goals into measurable results 
+            through strategic thinking and technical excellence.
           </p>
         </div>
+      </section>
 
-        <div className="space-y-16">
-          {processPhases.map((phase, index) => {
-            const IconComponent = phase.icon;
-            return (
-              <div key={index} className="relative">
-                {/* Connection Line */}
-                {index < processPhases.length - 1 && (
-                  <div className="absolute left-6 top-20 w-0.5 h-32 bg-border hidden lg:block" />
-                )}
-                
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                  {/* Phase Number & Icon */}
-                  <div className="lg:col-span-2 flex flex-col items-center lg:items-start">
-                    <div className={`w-12 h-12 ${phase.color} rounded-full flex items-center justify-center mb-4`}>
-                      <IconComponent className="w-6 h-6 text-white" />
-                    </div>
-                    <div className="text-center lg:text-left">
-                      <div className="text-3xl font-bold text-primary mb-2">{phase.number}</div>
-                      <div className="text-sm text-muted-foreground font-medium">Phase {phase.number}</div>
-                    </div>
-                  </div>
-
-                  {/* Phase Content */}
-                  <div className="lg:col-span-10">
-                    <div className="bg-card border border-border rounded-lg p-8">
-                      <div className="mb-6">
-                        <h2 className="text-2xl font-bold text-foreground mb-2">
-                          {phase.title}
-                        </h2>
-                        <h3 className="text-lg text-primary font-medium mb-4">
-                          {phase.subtitle}
-                        </h3>
-                        <p className="text-foreground leading-relaxed">
-                          {phase.description}
-                        </p>
+      {/* Process Timeline */}
+      <section className="section-spacing bg-card border-t border-border">
+        <div className="container">
+          <div className="relative">
+            {/* Timeline Connector Line - Using border instead of background for gradient */}
+            <div className="absolute left-16 top-20 h-full w-px hidden lg:block" 
+                 style={{
+                   background: 'linear-gradient(to bottom, hsl(210, 100%, 12%), hsl(177, 100%, 70%), hsl(210, 100%, 12%))'
+                 }} 
+            />
+            
+            <div className="space-y-24">
+              {processPhases.map((phase, index) => {
+                const IconComponent = phase.icon;
+                return (
+                  <div key={index} className="relative">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                      
+                      {/* Phase Number & Icon */}
+                      <div className="lg:col-span-3 flex flex-col items-center lg:items-start">
+                        <div className="relative flex flex-col items-center lg:items-start">
+                          {/* Large numbered icon badge */}
+                          <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-4 shadow-lg relative z-10">
+                            <span className="text-2xl font-bold text-white">{phase.number}</span>
+                          </div>
+                          {/* Icon below number */}
+                          <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                            <IconComponent className="w-6 h-6 text-primary" />
+                          </div>
+                          {/* Timeline dot for desktop */}
+                          <div className="absolute left-6 top-6 w-4 h-4 bg-secondary rounded-full border-4 border-card hidden lg:block z-20" />
+                        </div>
+                        <div className="text-center lg:text-left">
+                          <div className="text-sm text-muted-foreground font-medium uppercase tracking-wider">
+                            Phase {phase.number}
+                          </div>
+                        </div>
                       </div>
 
-                      <div>
-                        <h4 className="font-semibold text-foreground mb-4">Key Activities:</h4>
-                        <div className="space-y-3">
-                          {phase.activities.map((activity, activityIndex) => (
-                            <div key={activityIndex} className="flex items-start">
-                              <CheckCircle className="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" />
-                              <p className="text-sm text-muted-foreground leading-relaxed">
-                                {activity}
-                              </p>
+                      {/* Phase Content */}
+                      <div className="lg:col-span-9">
+                        <div className="bg-background border border-border rounded-xl p-8 hover:border-primary/50 transition-all duration-200 shadow-sm">
+                          <div className="mb-8">
+                            <h2 className="mb-3">{phase.title}</h2>
+                            <h3 className="text-xl text-primary font-semibold mb-6">
+                              {phase.subtitle}
+                            </h3>
+                            <p className="text-lg leading-relaxed">
+                              {phase.description}
+                            </p>
+                          </div>
+
+                          <div>
+                            <h4 className="text-lg font-semibold mb-6">Key Activities</h4>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              {phase.activities.map((activity, activityIndex) => (
+                                <div key={activityIndex} className="flex items-start gap-4">
+                                  <div className="w-3 h-3 bg-secondary rounded-full mt-2 flex-shrink-0"></div>
+                                  <p className="leading-relaxed">
+                                    {activity}
+                                  </p>
+                                </div>
+                              ))}
                             </div>
-                          ))}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Call to Action */}
-        <div className="mt-16 text-center">
-          <div className="bg-primary/5 border border-primary/20 rounded-lg p-8 max-w-2xl mx-auto">
-            <h3 className="text-xl font-bold text-foreground mb-4">
-              Ready to Transform Your Marketing?
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              This proven process delivers results. Let's discuss how we can apply it to your unique challenges and goals.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <button
-                  className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
-                  data-testid="button-start-project"
-                >
-                  Start Your Project
-                </button>
-              </Link>
-              <Link href="/case-studies">
-                <button
-                  className="inline-flex items-center justify-center px-6 py-3 border border-border bg-card text-foreground rounded-md hover:bg-muted transition-colors"
-                  data-testid="button-see-results"
-                >
-                  See Results
-                </button>
-              </Link>
+                );
+              })}
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Call to Action */}
+      <section className="section-spacing bg-background border-t border-border">
+        <div className="container text-center">
+          <h2 className="mb-6">Ready to Begin Your Transformation?</h2>
+          <p className="text-lg max-w-2xl mx-auto mb-8">
+            This proven process delivers results. Let's discuss how we can apply it to your unique 
+            challenges and goals to create measurable marketing success.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact" className="btn-primary" data-testid="link-start-project-cta">
+              Start Your Project
+            </a>
+            <a href="/case-studies" className="btn-secondary" data-testid="link-see-results-cta">
+              See Results
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
