@@ -1,0 +1,106 @@
+Please act as an expert UX/UI designer and front-end developer. Based on my previous instructions to build out the content, I now want you to apply a specific design system and structure to the entire Gatsby portfolio. The goal is to create a visually impressive, modern, and professional site that reflects the aesthetic of the design inspiration images I've provided.
+
+Overall Design Philosophy:
+The design should be clean, minimalist, and content-focused. We will use a strong typographic hierarchy, generous white space, and a refined color palette to create a sense of authority and sophistication. The feel should be less like a typical developer's portfolio and more like a high-end digital consultant's website.
+
+Step 1: Global Styles & Design System
+Please update the global styles and theme configuration (/src/styles/theme.js and /src/styles/variables.js) to implement the following design system.
+
+A. Color Palette:
+
+Primary Accent: A deep, professional blue (e.g., #0A192F). This will be used for headings, links, and primary buttons.
+
+Secondary Accent: A bright, energetic teal or aqua (e.g., #64FFDA). This will be used for highlights, hover effects, and secondary call-to-action elements.
+
+Background: A very light grey or off-white (e.g., #F8F9FA) for the main body background to feel clean but not sterile.
+
+Text (Headings): A dark navy or near-black (e.g., #1D2A3A).
+
+Text (Body): A slightly lighter, softer dark grey (e.g., #8892B0).
+
+Borders/Dividers: A light, subtle grey (e.g., #E2E8F0).
+
+B. Typography:
+
+Headings Font: Use a modern, clean sans-serif font like "Inter" or "Poppins". Headings should be bold (fontWeight: 700) and have tight letter spacing.
+
+Body Font: Use the same font family as the headings but in a regular weight (fontWeight: 400). Ensure the line height is generous (e.g., 1.6) for readability.
+
+Font Sizes (Responsive):
+
+h1 (Page Titles): clamp(40px, 8vw, 80px)
+
+h2 (Section Titles): clamp(32px, 5vw, 50px)
+
+h3 (Card Titles/Subheadings): 22px
+
+Body Text: 18px
+
+Small/Caption Text: 14px
+
+C. Layout & Spacing:
+
+Implement a consistent vertical rhythm and spacing scale based on multiples of 8px (8, 16, 24, 32, 48, 64, etc.).
+
+Main content sections should have a max-width of 1100px and be centered on the page.
+
+Step 2: Page Structure & Component Styling
+Please structure and style the pages and components as follows:
+
+A. Navigation & Header:
+
+The header should be clean and simple. On desktop, it should feature the logo on the left and navigation links (About, Case Studies, Skills, Process, Contact) on the right.
+
+The navigation links should have a subtle hover effect using the secondary accent color.
+
+Make the header "sticky" so it remains at the top of the viewport as the user scrolls, but with a semi-transparent blurred background effect to distinguish it from the content below.
+
+B. Homepage:
+
+Hero Section: The headline should be large and impactful as per the typography rules. The subtext should be clearly secondary. The CTA button should be prominent but clean.
+
+Key Metrics Section: Style this as a four-column grid. Each item should have the large number in the primary accent color and the description in the body text color. Add a subtle border around each grid item.
+
+Featured Case Studies: Display these as large, clean cards with a prominent cover image. On hover, the card should lift slightly (transform: translateY(-5px)) and a semi-transparent overlay with the project title can appear over the image.
+
+C. Case Studies Page (/case-studies):
+
+Start with a clear <h1> page title like "Selected Works."
+
+Display each case study in a full-width section. Alternate the layout for each project:
+
+Project 1: Image on the left, text content (challenge, solution, impact) on the right.
+
+Project 2: Text content on the left, image on the right.
+
+Project 3: Image on the left, text content on the right.
+
+Use clear <h3> tags for "The Challenge," "My Solution," and "The Impact." Use bullet points for the key activities under the solution to make it scannable.
+
+D. Technical Skills Page (/skills):
+
+Structure this page with clear sections using <h2> for "Areas of Expertise" and "Technology Stack."
+
+Technical Spotlights: Style these as distinct "cards" or bordered sections. Use a "Challenge -> Action -> Result" format with clear subheadings. This will break up the text and make the impressive results stand out.
+
+Technology & Software Lists: Display these in a multi-column layout to avoid a long, unappealing list. For example, two or three columns. Use the secondary accent color for bullet points or icons next to each skill.
+
+E. My Process Page (/process):
+
+This page should be highly visual and structured.
+
+Display the four phases as a vertical timeline or a series of numbered, full-width sections.
+
+Use a large, styled number (e.g., "01", "02") for each phase to create a strong visual hierarchy.
+
+Within each phase, use <h3> for the headline and bullet points for the "Key Activities."
+
+F. General Component Styling:
+
+Buttons: Create a primary button style with a solid background of the primary accent color and a secondary (outline) button style with a border of the primary accent color. Both should have a subtle hover transition.
+
+Links: Standard text links should use the primary accent color and have an underline on hover.
+
+Cards: All cards (for projects, skills, etc.) should have a subtle box-shadow and a slight border-radius (e.g., 4px) for a clean, modern look.
+
+Please proceed with implementing this design system across the entire portfolio. The goal is a cohesive, professional, and visually impressive user experience that aligns with the provided inspiration. Let me know if you have any questions.
