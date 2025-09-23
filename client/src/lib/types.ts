@@ -12,6 +12,10 @@ export interface CaseStudy {
   imageGradient: string;
   textColor: string;
   category: "Employment" | "Bearcave Marketing";
+  challenge?: string;
+  solution?: string[];
+  impact?: string;
+  results?: string[];
 }
 
 export interface Skill {
