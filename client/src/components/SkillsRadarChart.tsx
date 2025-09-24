@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo, useMemo } from "react";
 import { 
   Radar, 
   RadarChart, 
@@ -103,7 +103,8 @@ interface SkillsRadarChartProps {
   showDetails?: boolean;
 }
 
-export default function SkillsRadarChart({ animated = true, showDetails = true }: SkillsRadarChartProps) {
+// Memoized chart component for better performance
+const SkillsRadarChart = memo(function SkillsRadarChart({ animated = true, showDetails = true }: SkillsRadarChartProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isAnimated, setIsAnimated] = useState(animated);
 
@@ -111,11 +112,70 @@ export default function SkillsRadarChart({ animated = true, showDetails = true }
     setSelectedCategory(selectedCategory === category ? null : category);
   };
 
-  const getSelectedCategoryData = () => {
+  const selectedCategoryData = useMemo(() => {
     return selectedCategory 
       ? skillCategories.find(skill => skill.category === selectedCategory)
       : null;
-  };
+  }, [selectedCategory]);
+
+  // Memoize the skill category buttons to prevent re-renders
+  const skillCategoryButtons = useMemo(() => {
+    return skillCategories.map((skill) => {
+      const IconComponent = skill.icon;
+      const isSelected = selectedCategory === skill.category;
+      return (
+        <Button
+          key={skill.category}
+          variant={isSelected ? "default" : "ghost"}
+          className={`
+            w-full justify-start p-4 h-auto text-left
+            ${isSelected ? "bg-primary text-primary-foreground" : "hover:bg-muted/50"}
+          `}
+          onClick={() => handleCategoryClick(skill.category)}
+          data-testid={`skill-category-${skill.category.toLowerCase().replace(/\s+/g, '-')}`}
+        >
+          <div className="flex items-center gap-3 w-full">
+            <div 
+              className={`
+                p-2 rounded-lg flex items-center justify-center
+                ${isSelected ? "bg-primary-foreground/20" : ""}
+              `}
+              style={{ 
+                backgroundColor: isSelected ? "rgba(255,255,255,0.2)" : `${skill.color}20` 
+              }}
+            >
+              <IconComponent 
+                className={`w-4 h-4 ${isSelected ? "text-primary-foreground" : ""}`}
+                style={{ color: isSelected ? "inherit" : skill.color }}
+              />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between mb-1">
+                <p className="font-medium text-sm truncate">
+                  {skill.category}
+                </p>
+                <span className="text-xs font-bold">
+                  {skill.proficiency}%
+                </span>
+              </div>
+              <div className="w-full bg-background/20 rounded-full h-1.5 mb-1">
+                <div 
+                  className="h-1.5 rounded-full transition-all duration-1000 ease-out"
+                  style={{ 
+                    width: `${skill.proficiency}%`,
+                    backgroundColor: isSelected ? "rgba(255,255,255,0.8)" : skill.color
+                  }}
+                />
+              </div>
+              <p className="text-xs opacity-90 leading-tight">
+                {skill.description}
+              </p>
+            </div>
+          </div>
+        </Button>
+      );
+    });
+  }, [selectedCategory]);
 
   return (
     <div className="space-y-8">
@@ -240,71 +300,17 @@ export default function SkillsRadarChart({ animated = true, showDetails = true }
                 Skill Categories
               </h4>
               <div className="space-y-2 max-h-[400px] overflow-y-auto">
-                {skillCategories.map((skill) => {
-                  const IconComponent = skill.icon;
-                  const isSelected = selectedCategory === skill.category;
-                  return (
-                    <Button
-                      key={skill.category}
-                      variant={isSelected ? "default" : "ghost"}
-                      className={`
-                        w-full justify-start p-4 h-auto text-left
-                        ${isSelected ? "bg-primary text-primary-foreground" : "hover:bg-muted/50"}
-                      `}
-                      onClick={() => handleCategoryClick(skill.category)}
-                      data-testid={`skill-category-${skill.category.toLowerCase().replace(/\s+/g, '-')}`}
-                    >
-                      <div className="flex items-center gap-3 w-full">
-                        <div 
-                          className={`
-                            p-2 rounded-lg flex items-center justify-center
-                            ${isSelected ? "bg-primary-foreground/20" : ""}
-                          `}
-                          style={{ 
-                            backgroundColor: isSelected ? "rgba(255,255,255,0.2)" : `${skill.color}20` 
-                          }}
-                        >
-                          <IconComponent 
-                            className={`w-4 h-4 ${isSelected ? "text-primary-foreground" : ""}`}
-                            style={{ color: isSelected ? "inherit" : skill.color }}
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between mb-1">
-                            <p className="font-medium text-sm truncate">
-                              {skill.category}
-                            </p>
-                            <span className="text-xs font-bold">
-                              {skill.proficiency}%
-                            </span>
-                          </div>
-                          <div className="w-full bg-background/20 rounded-full h-1.5 mb-1">
-                            <div 
-                              className="h-1.5 rounded-full transition-all duration-1000 ease-out"
-                              style={{ 
-                                width: `${skill.proficiency}%`,
-                                backgroundColor: isSelected ? "rgba(255,255,255,0.8)" : skill.color
-                              }}
-                            />
-                          </div>
-                          <p className="text-xs opacity-90 leading-tight">
-                            {skill.description}
-                          </p>
-                        </div>
-                      </div>
-                    </Button>
-                  );
-                })}
+                {skillCategoryButtons}
               </div>
             </div>
           )}
         </div>
 
         {/* Selected Category Detail */}
-        {selectedCategory && getSelectedCategoryData() && (
+        {selectedCategory && selectedCategoryData && (
           <div className="mt-8 p-6 bg-muted/30 rounded-xl border border-border">
             {(() => {
-              const categoryData = getSelectedCategoryData()!;
+              const categoryData = selectedCategoryData!;
               const IconComponent = categoryData.icon;
               return (
                 <div className="flex items-start gap-4">
@@ -339,4 +345,6 @@ export default function SkillsRadarChart({ animated = true, showDetails = true }
       </Card>
     </div>
   );
-}
+});
+
+export default SkillsRadarChart;

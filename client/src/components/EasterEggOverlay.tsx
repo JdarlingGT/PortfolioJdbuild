@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback, memo } from "react";
 import { X, Play, Pause, Volume2, VolumeX, Maximize, Minimize } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -9,7 +9,7 @@ interface EasterEggOverlayProps {
   onClose: () => void;
 }
 
-export default function EasterEggOverlay({ isVisible, onClose }: EasterEggOverlayProps) {
+const EasterEggOverlay = memo(function EasterEggOverlay({ isVisible, onClose }: EasterEggOverlayProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -22,6 +22,59 @@ export default function EasterEggOverlay({ isVisible, onClose }: EasterEggOverla
 
   // Video placeholder - in a real implementation, you'd have an actual video file
   const videoSrc = "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4";
+
+  // Memoized handlers to prevent unnecessary re-renders
+  const handleClose = useCallback(() => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+    setHasStarted(false);
+    onClose();
+  }, [onClose]);
+
+  const togglePlayPause = useCallback(() => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play().catch(() => {
+          setIsPlaying(false);
+        });
+      }
+      setIsPlaying(!isPlaying);
+    }
+  }, [isPlaying]);
+
+  const toggleMute = useCallback(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  }, [isMuted]);
+
+  const toggleFullscreen = useCallback(() => {
+    if (!document.fullscreenElement) {
+      overlayRef.current?.requestFullscreen();
+      setIsFullscreen(true);
+    } else {
+      document.exitFullscreen();
+      setIsFullscreen(false);
+    }
+  }, []);
+
+  // Optimized mouse move handler
+  const handleMouseMove = useCallback(() => {
+    if (controlsTimeoutRef.current) {
+      clearTimeout(controlsTimeoutRef.current);
+    }
+    setShowControls(true);
+    controlsTimeoutRef.current = setTimeout(() => {
+      if (isPlaying) {
+        setShowControls(false);
+      }
+    }, 3000);
+  }, [isPlaying]);
 
   useEffect(() => {
     if (isVisible && !hasStarted) {
@@ -46,9 +99,14 @@ export default function EasterEggOverlay({ isVisible, onClose }: EasterEggOverla
       }
     };
 
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isVisible]);
+    if (isVisible) {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+    
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isVisible, handleClose, togglePlayPause]);
 
   // Auto-hide controls after mouse inactivity
   useEffect(() => {
@@ -75,54 +133,14 @@ export default function EasterEggOverlay({ isVisible, onClose }: EasterEggOverla
     };
   }, [isVisible, isPlaying]);
 
-  const handleClose = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    }
-    setHasStarted(false);
-    onClose();
-  };
-
-  const togglePlayPause = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
+  // Cleanup effect when component unmounts
+  useEffect(() => {
+    return () => {
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
       }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
-
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      overlayRef.current?.requestFullscreen();
-      setIsFullscreen(true);
-    } else {
-      document.exitFullscreen();
-      setIsFullscreen(false);
-    }
-  };
-
-  const handleMouseMove = () => {
-    if (controlsTimeoutRef.current) {
-      clearTimeout(controlsTimeoutRef.current);
-    }
-    setShowControls(true);
-    controlsTimeoutRef.current = setTimeout(() => {
-      if (isPlaying) {
-        setShowControls(false);
-      }
-    }, 3000);
-  };
+    };
+  }, []);
 
   if (!isVisible) return null;
 
@@ -134,10 +152,10 @@ export default function EasterEggOverlay({ isVisible, onClose }: EasterEggOverla
       onMouseMove={handleMouseMove}
       data-testid="easter-egg-overlay"
     >
-      {/* Animated Background Particles */}
+      {/* Optimized Background Particles - fewer particles for better performance */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
-        {[...Array(20)].map((_, i) => (
+        {[...Array(10)].map((_, i) => (
           <div
             key={i}
             className="absolute w-2 h-2 bg-primary/30 rounded-full animate-pulse"
@@ -285,4 +303,6 @@ export default function EasterEggOverlay({ isVisible, onClose }: EasterEggOverla
       </Card>
     </div>
   );
-}
+});
+
+export default EasterEggOverlay;

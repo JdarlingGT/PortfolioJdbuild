@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 export interface EasterEggTrigger {
   type: 'keySequence' | 'logoClick' | 'secretCode';
@@ -32,6 +32,9 @@ export function useEasterEgg(triggers: EasterEggTrigger[] = DEFAULT_TRIGGERS) {
   const [logoClickCount, setLogoClickCount] = useState(0);
   const [secretCodeInput, setSecretCodeInput] = useState('');
   const [lastKeyTime, setLastKeyTime] = useState(0);
+  
+  // Use refs for cleanup to prevent memory leaks
+  const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
 
   // Reset sequences after timeout
   const SEQUENCE_TIMEOUT = 3000;
@@ -69,7 +72,7 @@ export function useEasterEgg(triggers: EasterEggTrigger[] = DEFAULT_TRIGGERS) {
     return false;
   }, [currentKeySequence, logoClickCount, secretCodeInput, triggers]);
 
-  // Handle keyboard events
+  // Handle keyboard events with cleanup
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       const now = Date.now();
@@ -112,22 +115,37 @@ export function useEasterEgg(triggers: EasterEggTrigger[] = DEFAULT_TRIGGERS) {
     }
   }, [currentKeySequence, logoClickCount, secretCodeInput, checkTriggers, resetSequences]);
 
-  // Auto-reset sequences after timeout
+  // Auto-reset sequences after timeout with cleanup
   useEffect(() => {
     const timer = setTimeout(() => {
       resetSequences();
     }, SEQUENCE_TIMEOUT);
 
-    return () => clearTimeout(timer);
+    timeoutsRef.current.push(timer);
+
+    return () => {
+      clearTimeout(timer);
+      timeoutsRef.current = timeoutsRef.current.filter(t => t !== timer);
+    };
   }, [lastKeyTime, resetSequences]);
+
+  // Cleanup all timeouts on unmount
+  useEffect(() => {
+    return () => {
+      timeoutsRef.current.forEach(clearTimeout);
+      timeoutsRef.current = [];
+    };
+  }, []);
 
   const triggerLogoClick = useCallback(() => {
     setLogoClickCount(prev => prev + 1);
     
     // Reset click count after timeout
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setLogoClickCount(0);
     }, 5000);
+    
+    timeoutsRef.current.push(timer);
   }, []);
 
   const closeEasterEgg = useCallback(() => {

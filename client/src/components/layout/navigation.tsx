@@ -1,168 +1,62 @@
-import { useState } from "react";
+import { useState, memo, useMemo } from "react";
 import { Link, useLocation } from "wouter";
 import { 
   Menu, 
   X, 
   Moon, 
   Sun, 
-  User, 
-  Briefcase, 
-  Code, 
-  Target, 
-  Play, 
-  Mail,
-  ArrowRight,
-  Building2,
-  Users,
-  Lightbulb,
-  Settings,
-  BarChart3,
-  Monitor,
-  BookOpen,
-  Server,
-  Rocket,
-  TrendingUp,
-  Shield,
-  Navigation as NavigationIcon,
-  Palette,
-  Image,
-  Layout,
-  Type
+  ArrowRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme-provider";
+import { megaMenuContent } from "@/lib/navigation-data";
 
 interface NavigationProps {
   onLogoClick?: () => void;
 }
 
-export default function Navigation({ onLogoClick }: NavigationProps) {
+// Optimize: Move navigation array outside component to prevent recreation
+const NAVIGATION_ITEMS = [
+  { name: "Home", href: "/", hasMenu: false },
+  { name: "About", href: "/about", hasMenu: true },
+  { name: "Case Studies", href: "/case-studies", hasMenu: true },
+  { name: "Creative Design", href: "/creative-design", hasMenu: true },
+  { name: "Deep Dives", href: "/deep-dives", hasMenu: true },
+  { name: "Skills", href: "/skills", hasMenu: true },
+  { name: "Process", href: "/process", hasMenu: true },
+  { name: "Demos", href: "/demos", hasMenu: true },
+  { name: "Contact", href: "/contact", hasMenu: true },
+];
+
+const Navigation = memo(function Navigation({ onLogoClick }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [location] = useLocation();
   const { theme, setTheme } = useTheme();
 
-  const navigation = [
-    { name: "Home", href: "/", hasMenu: false },
-    { name: "About", href: "/about", hasMenu: true },
-    { name: "Case Studies", href: "/case-studies", hasMenu: true },
-    { name: "Creative Design", href: "/creative-design", hasMenu: true },
-    { name: "Deep Dives", href: "/deep-dives", hasMenu: true },
-    { name: "Skills", href: "/skills", hasMenu: true },
-    { name: "Process", href: "/process", hasMenu: true },
-    { name: "Demos", href: "/demos", hasMenu: true },
-    { name: "Contact", href: "/contact", hasMenu: true },
-  ];
-
-  const megaMenuContent = {
-    "About": {
-      sections: [
-        {
-          title: "Overview",
-          items: [
-            { name: "My Story", description: "Marketing strategist & systems architect", icon: User },
-            { name: "Philosophy", description: "Strategy meets architecture", icon: Lightbulb },
-            { name: "Experience", description: "8+ years in marketing & tech", icon: Briefcase }
-          ]
-        }
-      ]
-    },
-    "Case Studies": {
-      sections: [
-        {
-          title: "Featured Projects",
-          items: [
-            { name: "Graston Technique", description: "Healthcare training transformation", icon: Building2 },
-            { name: "Black Letter Legal", description: "Logo design & brand identity", icon: Users },
-            { name: "Gomez Craft Barbecue", description: "Restaurant brand & digital presence", icon: Target }
-          ]
-        }
-      ]
-    },
-    "Creative Design": {
-      sections: [
-        {
-          title: "Design Categories",
-          items: [
-            { name: "Logo Design", description: "Custom logos & brand marks", icon: Palette },
-            { name: "Brand Identity", description: "Complete visual systems", icon: Shield },
-            { name: "Print Materials", description: "Business cards & collateral", icon: Layout },
-            { name: "Digital Graphics", description: "Web & social media assets", icon: Image }
-          ]
-        }
-      ]
-    },
-    "Skills": {
-      sections: [
-        {
-          title: "Core Marketing",
-          items: [
-            { name: "Strategy", description: "Data-driven marketing strategy", icon: Target },
-            { name: "Analytics", description: "Performance measurement", icon: BarChart3 },
-            { name: "Content", description: "Creative content marketing", icon: Lightbulb }
-          ]
-        },
-        {
-          title: "Technical Skills",
-          items: [
-            { name: "Web Development", description: "React, TypeScript, Node.js", icon: Code },
-            { name: "Automation", description: "CRM & workflow automation", icon: Settings },
-            { name: "Dashboards", description: "Custom analytics interfaces", icon: Monitor }
-          ]
-        }
-      ]
-    },
-    "Process": {
-      sections: [
-        {
-          title: "My 4-Phase Workflow",
-          items: [
-            { name: "Discovery & Audit", description: "Understanding your business", icon: Target },
-            { name: "Strategy & Architecture", description: "Planning the solution", icon: Lightbulb },
-            { name: "Build & Integration", description: "Creating & implementing", icon: Code },
-            { name: "Optimization & Growth", description: "Measuring & improving", icon: BarChart3 }
-          ]
-        }
-      ]
-    },
-    "Demos": {
-      sections: [
-        {
-          title: "Interactive Showcases",
-          items: [
-            { name: "Automation Workflow", description: "Live marketing automation demo", icon: Play },
-            { name: "Analytics Dashboard", description: "Real-time data visualization", icon: Monitor },
-            { name: "CRM Interface", description: "Custom contact management", icon: Users }
-          ]
-        }
-      ]
-    },
-    "Deep Dives": {
-      sections: [
-        {
-          title: "Project Stories",
-          items: [
-            { name: "The War Room", description: "Full-stack performance overhaul", icon: Server },
-            { name: "The Launchpad", description: "Automated membership funnel", icon: Rocket },
-            { name: "The Signal", description: "Analytics & attribution overhaul", icon: TrendingUp },
-            { name: "All Stories", description: "View complete collection", icon: BookOpen }
-          ]
-        }
-      ]
-    },
-    "Contact": {
-      sections: [
-        {
-          title: "Get In Touch",
-          items: [
-            { name: "Send Message", description: "Contact form & inquiries", icon: Mail },
-            { name: "Schedule Call", description: "Book a consultation", icon: Users },
-            { name: "View Resume", description: "Download my experience", icon: Briefcase }
-          ]
-        }
-      ]
-    }
-  };
+  // Memoize navigation rendering for better performance
+  const navigationItems = useMemo(() => {
+    return NAVIGATION_ITEMS.map((item) => (
+      <div
+        key={item.name}
+        className="relative"
+        onMouseEnter={() => item.hasMenu && setActiveMenu(item.name)}
+        onMouseLeave={() => setActiveMenu(null)}
+      >
+        <Link
+          href={item.href}
+          className={`transition-all py-2 px-1 font-medium text-sm tracking-wide ${
+            location === item.href
+              ? "text-primary border-b-2 border-primary"
+              : "text-muted-foreground hover:text-primary hover:border-b-2 hover:border-secondary"
+          }`}
+          data-testid={`nav-${item.name.toLowerCase().replace(' ', '-')}`}
+        >
+          {item.name}
+        </Link>
+      </div>
+    ));
+  }, [location]);
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -189,26 +83,7 @@ export default function Navigation({ onLogoClick }: NavigationProps) {
           </Link>
           
           <div className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <div
-                key={item.name}
-                className="relative"
-                onMouseEnter={() => item.hasMenu && setActiveMenu(item.name)}
-                onMouseLeave={() => setActiveMenu(null)}
-              >
-                <Link
-                  href={item.href}
-                  className={`transition-all py-2 px-1 font-medium text-sm tracking-wide ${
-                    location === item.href
-                      ? "text-primary border-b-2 border-primary"
-                      : "text-muted-foreground hover:text-primary hover:border-b-2 hover:border-secondary"
-                  }`}
-                  data-testid={`nav-${item.name.toLowerCase().replace(' ', '-')}`}
-                >
-                  {item.name}
-                </Link>
-              </div>
-            ))}
+            {navigationItems}
             <Button
               variant="ghost"
               size="icon"
@@ -278,26 +153,25 @@ export default function Navigation({ onLogoClick }: NavigationProps) {
                                   (item.name === "The War Room" ? "/deep-dives/war-room" :
                                    item.name === "The Launchpad" ? "/deep-dives/launchpad" :
                                    item.name === "The Signal" ? "/deep-dives/signal" :
-                                   item.name === "All Stories" ? "/deep-dives" : "/deep-dives") :
-                                activeMenu === "Skills" ? "/skills" : 
-                                activeMenu === "Process" ? "/process" : 
-                                activeMenu === "Demos" ? "/demos" : 
-                                activeMenu === "Contact" ? "/contact" : "/"}
-                          className="group flex items-start gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors"
-                          onClick={() => setActiveMenu(null)}
-                          data-testid={`mega-menu-${activeMenu.toLowerCase()}-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
+                                   "/deep-dives") :
+                                activeMenu === "Skills" ? "/skills" :
+                                activeMenu === "Process" ? "/process" :
+                                activeMenu === "Demos" ? "/demos" :
+                                activeMenu === "Contact" ? "/contact" : "#"}
+                          className="group flex items-start gap-4 p-3 rounded-lg transition-all hover:bg-muted/50 hover:shadow-md"
+                          data-testid={`menu-item-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                         >
-                          <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                            <IconComponent className="w-4 h-4 text-primary" />
+                          <div className="flex-shrink-0 p-2 bg-primary/10 rounded-md group-hover:bg-primary/20 transition-colors">
+                            <IconComponent className="w-5 h-5 text-primary" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2">
-                              <span className="font-medium text-foreground group-hover:text-primary transition-colors">
+                              <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                                 {item.name}
-                              </span>
-                              <ArrowRight className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-all translate-x-[-4px] group-hover:translate-x-0" />
+                              </p>
+                              <ArrowRight className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                             </div>
-                            <p className="text-sm text-muted-foreground mt-1">
+                            <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
                               {item.description}
                             </p>
                           </div>
@@ -308,22 +182,6 @@ export default function Navigation({ onLogoClick }: NavigationProps) {
                 </div>
               ))}
             </div>
-            
-            {/* Call to Action */}
-            <div className="mt-8 pt-8 border-t border-border">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h4 className="font-semibold text-foreground">Ready to get started?</h4>
-                  <p className="text-sm text-muted-foreground">Let's discuss your marketing automation and systems architecture needs.</p>
-                </div>
-                <Button asChild className="flex-shrink-0">
-                  <Link href="/contact" onClick={() => setActiveMenu(null)}>
-                    Get In Touch
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
           </div>
         </div>
       )}
@@ -333,7 +191,7 @@ export default function Navigation({ onLogoClick }: NavigationProps) {
         <div className="md:hidden bg-card/95 backdrop-blur-sm border-b border-border">
           <div className="container py-4">
             <div className="space-y-2">
-              {navigation.map((item) => (
+              {NAVIGATION_ITEMS.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
@@ -354,4 +212,6 @@ export default function Navigation({ onLogoClick }: NavigationProps) {
       )}
     </nav>
   );
-}
+});
+
+export default Navigation;
