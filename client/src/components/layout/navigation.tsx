@@ -32,7 +32,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme-provider";
 
-export default function Navigation() {
+interface NavigationProps {
+  onLogoClick?: () => void;
+}
+
+export default function Navigation({ onLogoClick }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [location] = useLocation();
@@ -168,7 +172,16 @@ export default function Navigation() {
     <nav className="nav-sticky">
       <div className="container">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center space-x-3" data-testid="logo-link">
+          <Link 
+            href="/" 
+            className="flex items-center space-x-3 hover:opacity-90 transition-opacity" 
+            data-testid="logo-link"
+            onClick={(e) => {
+              if (onLogoClick) {
+                onLogoClick();
+              }
+            }}
+          >
             <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shadow-md transition-all hover:shadow-lg hover:scale-105">
               <span className="text-primary-foreground font-bold text-base tracking-tight">JD</span>
             </div>

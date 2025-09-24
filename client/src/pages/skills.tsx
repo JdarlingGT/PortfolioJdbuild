@@ -15,6 +15,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useSEO, createBreadcrumbSchema } from "@/hooks/use-seo";
+import SkillsRadarChart from "@/components/SkillsRadarChart";
 
 interface TechnicalCategory {
   title: string;
@@ -188,6 +189,13 @@ export default function Skills() {
             security implementation, analytics systems, and server administration enables me to build 
             marketing systems that are both sophisticated and reliable.
           </p>
+        </div>
+      </section>
+
+      {/* Skills Radar Chart */}
+      <section className="section-spacing bg-muted/30 border-t border-border">
+        <div className="container">
+          <SkillsRadarChart />
         </div>
       </section>
 

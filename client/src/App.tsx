@@ -7,6 +7,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Navigation from "@/components/layout/navigation";
 import Footer from "@/components/layout/footer";
 import FloatingChatButton from "@/components/FloatingChatButton";
+import EasterEggOverlay from "@/components/EasterEggOverlay";
+import { useEasterEgg } from "@/hooks/use-easter-egg";
 import Home from "@/pages/home";
 import About from "@/pages/about";
 import CaseStudies from "@/pages/case-studies";
@@ -23,9 +25,11 @@ import SignalDeepDive from "@/pages/deep-dives/signal";
 import NotFound from "@/pages/not-found";
 
 function Router() {
+  const { isEasterEggVisible, closeEasterEgg, triggerLogoClick } = useEasterEgg();
+
   return (
     <div className="min-h-screen flex flex-col">
-      <Navigation />
+      <Navigation onLogoClick={triggerLogoClick} />
       <main className="flex-1">
         <Switch>
           <Route path="/" component={Home} />
@@ -46,6 +50,10 @@ function Router() {
       </main>
       <Footer />
       <FloatingChatButton />
+      <EasterEggOverlay 
+        isVisible={isEasterEggVisible} 
+        onClose={closeEasterEgg}
+      />
     </div>
   );
 }
