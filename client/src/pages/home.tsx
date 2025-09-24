@@ -19,7 +19,7 @@ export default function Home() {
   });
 
   return (
-    <>
+    <div className="pt-16">
       <Hero />
       
       {/* AI Agent Introduction Section */}
@@ -52,6 +52,6 @@ export default function Home() {
       
       <KeyMetrics />
       <Testimonials />
-    </>
+    </div>
   );
 }
